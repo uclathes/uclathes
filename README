@@ -64,7 +64,7 @@ WHERE TO GET UCLATHES
 ---------------------
 
 The most recent version of this package can be found at
-<URL:http://www.cs.ucla.edu/ficus-members/johnh/latex.html>.
+<URL:http://www.cs.ucla.edu/ficus-members/johnh/uclathes.html>.
 
 
 ISPELL GOBBLYGOOK
@@ -83,7 +83,7 @@ and I will update it accordingly.
 
 The uclathes package is for LaTeX2e.  If you're running LaTeX 2.09,
 you should use the package "thesis.tar" (also available from
-<URL:http://www.cs.ucla.edu/ficus-members/johnh/latex.html>) instead.
+<URL:http://www.cs.ucla.edu/ficus-members/johnh/uclathes.html>) instead.
 
 Finally, if you successfully prepare your thesis with uclathes, please
 send me some e-mail to let me know that my work was not in vain.
