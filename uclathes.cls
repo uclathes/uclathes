@@ -29,6 +29,9 @@
 %             Line spacing.  Default is "double".
 %             [NOTE:  Until further notice, "single" is disabled.]
 %
+%	  nohyphenatetitles, hyphenatetitles
+%	      Don't hyphenate section (and subsection...) titles.
+%
 %     Commands (to specify preliminary page info):
 %
 %         \title{X}
@@ -128,8 +131,8 @@
 %  I have done a quick port of Rich Wales' "thesis" LaTeX 2.09
 %  document style to LaTeX2e.  The major changes were in option
 %  handling and font selection.  Additionally, I renamed the files
-%  to fit within DOS 8.3 constraints (even though I neither use
-%  nor advocate DOS).
+%  to fit within MS-DOS 8.3 constraints (even though I neither use
+%  nor advocate MS-DOS).
 %      -johnh
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,6 +147,11 @@
 \typeout{LaTeX2e port copyright (C) 1995 by John Heidemann.}
 \typeout{Copyright (C) 1988 by Richard B. Wales, copyright (C) 1985 by Leslie Lamport.}
 \typeout{Please send bug reports and graduation notices to <johnh@ficus.cs.ucla.edu>.}
+
+%
+% First load critical packages (needed for option processing).
+%
+\RequirePackage{ifthen}
 
 
 % The following commands set the thesis/dissertation title and author,
@@ -212,6 +220,14 @@
 \newcommand{\degreeyear}[1]
    {\def\@degreeyear{#1}\if@cyrset\else\def\@copyrightyear{#1}\fi}
 \newcommand{\copyrightyear}[1]{\def\@copyrightyear{#1}\@cyrsettrue}
+
+%
+% Optional title hyphenation added 14-Jun-95 by johnh.
+%
+\newboolean{hyphenatetitles}
+\setboolean{hyphenatetitles}{true}
+\DeclareOption{nohyphenatetitles}{\setboolean{hyphenatetitles}{false}}
+\DeclareOption{hyphenatetitles}{\setboolean{hyphenatetitles}{true}}
 
 % The \ProcessOptions command does the options.
 
