@@ -1,0 +1,106 @@
+
+%
+% thesis_macros
+% Copyright (C) 1995 by John Heidemann, <johnh@isi.edu>
+%
+
+\RequirePackage{johnh_general}
+
+\RequirePackage{ifthen}
+
+% \def\epsfreduction{0.667}
+\def\epsfgraphreduction{0.9}
+
+\newcommand\comment[1]{{[\sffamily #1]}}
+
+%
+% TeX seems to want to indent after chapters,
+% although it shouldn't.  Rather than argue
+% with it, I work around it manually by putting this
+% hack in the right places:
+\newcommand{\noindenthack}{\noindent}
+
+
+\newcommand{\fwling}{featherweight layering}
+\newcommand{\fwls}{featherweight layers}
+\newcommand{\fwl}{featherweight layer}
+
+\newcommand{\Fwling}{Featherweight layering}
+\newcommand{\Fwls}{Featherweight layers}
+\newcommand{\Fwl}{Featherweight layer}
+
+\newcommand{\FwLing}{Featherweight Layering}
+\newcommand{\FwLs}{Featherweight Layers}
+\newcommand{\FwL}{Featherweight Layer}
+
+\newcommand{\xvop}[2]{{\scomputer {{#1}\_{#2}}}}
+\newcommand{\vop}[1]{\xvop{vop}{#1}}
+
+\newcommand{\usec}{$\mu$seconds}
+\renewcommand{\unix}{Unix}
+
+\newcommand{\dotdot}{\scomputer{..}}
+
+\newenvironment{mycode}%
+	{\small
+	}{%
+	}
+
+\newcommand{\mylangle}{\langle}
+\newcommand{\myrangle}{\rangle}
+\newcommand{\myrightarrow}{\rightarrow}
+
+
+%
+% Sizes of various things:
+%
+  \newcommand{\tablesize}{\normalsize}
+  \newcommand{\computertablesize}{\small}
+  \newcommand{\bibliographysize}{\normalsize}
+
+  %
+  % Another space-saver:  shrink the figures and graphs.
+  %
+ \def\epsfreduction{0.85}
+ \def\epsfgraphreduction{0.9}   % should be left at 0.9 with two-column text
+% \def\epsfsize#1#2{\epsfreduction#1}
+
+%\newcommand{\appendixnumbering}{
+%	\renewcommand{\thechapter}{\Alph{chapter}}
+%	\setcounter{chapter}{0}
+%	}
+
+\newenvironment{functions}%
+	{\begin{description}}%
+	{\end{description}}
+
+\makeatletter
+  \newcommand{\SubmitSingleSpace}{
+    \ifissubmit
+      \renewcommand\baselinestretch{\@singlespacing}\@normalsize
+    \fi
+  }
+  \newcommand{\SubmitDoubleSpace}{
+    \ifissubmit
+      \renewcommand\baselinestretch{\@doublespacing}\@normalsize
+    \fi
+  }
+\makeatother
+
+
+\iffalse
+Figure drawing style guide:
+
+layer labels:
+	helvetica 12pt bold
+	(short acronyms) helvetica 14pt bold
+
+spacing:  8 pixels
+each layers will be 3 high and 7 or 7.5 wide
+
+or spacing: 8 pts
+each layer will be 4 high and 10 wide
+
+boxes and vnode links are line #2
+\fi
+
