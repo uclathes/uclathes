@@ -47,10 +47,6 @@
     \def\@degreename{#1}
    }
 \dissertation{Doctor of Philosophy}	% default
-\DeclareOption{PhD}{}			% default -- nothing more to do
-\DeclareOption{MA}{\thesis{Master of Arts}}
-\DeclareOption{MS}{\thesis{Master of Science}}
-\DeclareOption{EdD}{\dissertation{Doctor of Education}\@departmentfalse}
 
 % The following commands set the year in which the degree will be
 % awarded, as well as the year of copyright.
