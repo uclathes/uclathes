@@ -1,8 +1,15 @@
 % UCLA THESIS TITLE PAGE STYLE (format for preliminary pages)
-%	Copyright (c) 1988 Richard B. Wales.  All Rights Reserved.
+% (C) Copyright 1995 by John Heidemann,
+% derived from work (C) Copyright 1988 Richard B. Wales,
+% taken in turn from material Copyright (C) 1985 by Leslie Lamport.
 
-\typeout{Document Style 'thesistitle', version 0.94 BETA, 5/23/91.}
-\typeout{Bugs to wales@CS.UCLA.EDU}
+%%%
+% Version checking.
+%%%
+\NeedsTeXFormat{LaTeX2e}
+\def\uclathtiversion{1.0 beta}
+\def\uclathtidate{1995/05/11}
+\ProvidesFile{uclathti}[\uclathtidate, \uclathtiversion]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %								       %
@@ -14,21 +21,21 @@
    \begin {titlepage}
       \pagebreak
       \begin {center}
-         \large \sc University of California \\
-         \normalsize \rm Los Angeles \\
+         \textsc{\large University of California} \\
+         \normalsize Los Angeles \\
          \vfill
-         \@titlesize \bf \@title \\
+         \textbf{\@titlesize \@title} \\
          \vskip 48pt plus0pt minus18pt
-         \normalsize \rm A \@thesisname\
+         \normalsize A \@thesisname\
 	 submitted in partial satisfaction \\
          of the requirements for the degree \\
          \@degreename\if@department\ in \@department \fi\\
          \vskip 24pt plus0pt minus6pt
          by \\
          \vskip 24pt plus0pt minus6pt
-         \large \bf \@author \\
+         \textbf{\large \@author} \\
          \vfill
-         \normalsize \rm \@degreeyear
+         {\normalsize \@degreeyear}
       \end {center}
       \newpage
    \end {titlepage}
@@ -58,7 +65,7 @@
          %\ifx\@copyrightyear\@degreeyear\else , \@degreeyear \fi
          %\ by \@author \\
          %\@copyrightinfo
-	 \normalsize \rm \copyright\ Copyright by \\
+	 \normalsize \normalfont \copyright\ Copyright by \\
 	 \@author \\ \@copyrightyear
       \end{center}
    \fi
@@ -112,7 +119,7 @@
    \pagebreak
    \noindent
    \renewcommand\baselinestretch{\@doublespacing}\@normalsize
-   \normalsize \rm The \@thesisname\ of \@author\ is approved.
+   \normalsize \normalfont The \@thesisname\ of \@author\ is approved.
    \vskip 72pt plus0pt minus24pt
    \begin {flushright}
       \ifnum\c@members>5 \@signatureline{\@memberF}\fi
@@ -155,7 +162,7 @@
 \newcommand\@makededication{
    \if@dedication
       \pagebreak\par\pagestyle{plain}
-      \renewcommand\baselinestretch{\@spacing}\@normalsize\rm
+      \renewcommand\baselinestretch{\@spacing}\@normalsize\normalfont
       \vspace*{0pt}		% force spacing at top of page
       \vfill
       \begin{center}
@@ -181,10 +188,10 @@
       \pagebreak\par\pagestyle{plain}
       \renewcommand\baselinestretch{\@spacing}\@normalsize
       \begin {center}
-         \large \sc Acknowledgments
+         \textsc{\large Acknowledgments}
       \end {center}
       \vskip 12pt
-      \noindent \normalsize \rm \@acknowledgments
+      \noindent \normalsize \normalfont \@acknowledgments
       \vfill
       \newpage
    \fi
@@ -197,14 +204,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % This definition for the "\vitaitem" command allows for up to 26 vita
-% items.  The use of "\rm" in each definition permits any macros that
+% items.  The use of "\normalfont" in each definition permits any macros that
 % are sensitive to type style (and which might be disrupted by the mode
 % set for the "tabular" processing) to work properly.
 
 \newcounter{vitaitems}
 \setcounter{vitaitems}{0}
-\newcommand\@vitadate[1]{{\parbox[t]{1.25in}{\rm{#1}}}}
-\newcommand\@vitatext[1]{{\parbox[t]{4.45in}{\rm{#1}}}}
+\newcommand\@vitadate[1]{{\parbox[t]{1.25in}{\normalfont{#1}}}}
+\newcommand\@vitatext[1]{{\parbox[t]{4.45in}{\normalfont{#1}}}}
 \newcommand\vitaitem[2]{
    \ifcase\value{vitaitems}
       \def\@vitaA{\@vitadate{#1} & \@vitatext{#2}} \or
@@ -298,7 +305,7 @@
       \pagebreak\par\pagestyle{plain}
       \renewcommand\baselinestretch{\@spacing}\@normalsize
       \begin{center}
-         \large \sc Vita \\
+         \textsc{\large Vita} \\
       \end{center}
       \vskip 12pt
       \ifnum\c@vitaitems>0  \@printvitaitem{\@vitaA} \fi
@@ -333,7 +340,7 @@
 	 \fi
 	 \vskip 36pt
 	 \begin{center}
-	    \large \sc
+	    \large \scshape
 	    \if@pubs
 	       \if@pres Publications and Presentations
 	       \else    Publications
@@ -388,11 +395,11 @@
    \if@abstract
       \pagebreak\par\pagestyle{plain}
       \begin{center}
-         \large \sc Abstract of the \@Thesisname\\[12pt]
-         \@titlesize \bf \@title\\[12pt]
-         \normalsize \rm by\\[12pt]
-         \large \bf \@author \\
-         \normalsize \rm
+         \textsc{\large Abstract of the \@Thesisname}\\[12pt]
+         \textbf{\@titlesize \@title}\\[12pt]
+         \normalsize \normalfont by\\[12pt]
+         \textbf{\large \@author} \\
+         \normalsize \normalfont
 	 \@degreename\if@department\ in \@department \fi\\
          University of California, Los Angeles, \@degreeyear \\
          \ifnum\c@chairs>2
