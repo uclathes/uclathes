@@ -27,10 +27,15 @@
 %
 %         single, double
 %             Line spacing.  Default is "double".
-%             [NOTE:  Until further notice, "single" is disabled.]
+%             NOTE:  Single spacing is NON-CONFORMING to the RFTADP.
+%
+%	  twoside
+%             Two-sided printing (for a duplex printer).
+%             NOTE:  two-sided printing is NON-CONFORMING to the RFTADP.
 %
 %	  nohyphenatetitles, hyphenatetitles
 %	      Don't hyphenate section (and subsection...) titles.
+%             Default is hyphenatetitles.
 %
 %     Commands (to specify preliminary page info):
 %
@@ -153,47 +158,14 @@
 %
 \RequirePackage{ifthen}
 
+% Get the title page macros.
+\input{uclathma.clo}
 
-% The following commands set the thesis/dissertation title and author,
-% as well as the type size for printing the title.
-
-\def\@title{NO TITLE!?!}
-\def\@author{NO AUTHOR!?!}
-\def\@titlesize{\Large}
-\renewcommand{\title}[1]{\def\@title{#1}}
-\renewcommand{\author}[1]{\def\@author{#1}}
-\newcommand{\titlesize}[1]{\def\@titlesize{#1}}
-
-% The following commands set the department name.
-
-\newif\if@department
-\newcommand{\department}[1]{\def\@department{#1}\@departmenttrue}
-\newcommand{\nodepartment}{\@departmentfalse}
-\department{NO DEPARTMENT!?!}
-
-% The following commands will process the "MA", "MS", "PhD", or "EdD"
-% option.  (The default is "PhD".)
-
-\newcommand{\thesis}[1]
-   {\def\@thesisname{thesis}
-    \def\@Thesisname{Thesis}
-    \def\@degreename{#1}
-   }
-\newcommand{\blahfoo}[1]
-   {\def\@thesisname{blahfoo}
-    \def\@Thesisname{Blahfoo}
-    \def\@degreename{#1}
-   }
-\newcommand{\dissertation}[1]
-   {\def\@thesisname{dissertation}
-    \def\@Thesisname{Dissertation}
-    \def\@degreename{#1}
-   }
-\dissertation{Doctor of Philosophy}	% default
 \DeclareOption{PhD}{}			% default -- nothing more to do
 \DeclareOption{MA}{\thesis{Master of Arts}}
 \DeclareOption{MS}{\thesis{Master of Science}}
 \DeclareOption{EdD}{\dissertation{Doctor of Education}\@departmentfalse}
+
 
 % The following commands will process the "single" or "double" option.
 % (The default is "double".)  This controls inter-line spacing.  Note
@@ -209,17 +181,6 @@
 \DeclareOption{double}{\let\@spacing=\@doublespacing}
 
 \DeclareOption{draft}{\overfullrule 5pt}  % Causes overfull hboxes to be marked.
-
-% The following commands set the year in which the degree will be
-% awarded, as well as the year of copyright.
-
-\def\@degreeyear{\number\year}
-\def\@copyrightyear{\number\year}
-\newif\if@cyrset
-\@cyrsetfalse
-\newcommand{\degreeyear}[1]
-   {\def\@degreeyear{#1}\if@cyrset\else\def\@copyrightyear{#1}\fi}
-\newcommand{\copyrightyear}[1]{\def\@copyrightyear{#1}\@cyrsettrue}
 
 %
 % Optional title hyphenation added 14-Jun-95 by johnh.
@@ -500,6 +461,7 @@
 % LIST OF FIGURES
 %
 \newif\if@figures
+\@figurestrue  % rbw did this in \makeintropages; I moved it here.  ---johnh 950825
 \def\listoffigures{
   \if@figures\chapter*{List of Figures\markboth
    {LIST OF FIGURES}{LIST OF FIGURES}}\@starttoc{lof}\fi}
@@ -509,6 +471,7 @@
 % LIST OF TABLES
 %
 \newif\if@tables
+\@tablestrue  % rbw did this in \makeintropages; I moved it here.  ---johnh 950825
 \def\listoftables{
   \if@tables\chapter*{List of Tables\markboth
    {LIST OF TABLES}{LIST OF TABLES}}\@starttoc{lot}\fi}
