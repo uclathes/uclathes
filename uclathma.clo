@@ -1,0 +1,65 @@
+% UCLA THESIS MACROS
+% (C) Copyright 1995 by John Heidemann,
+% derived from work (C) Copyright 1988 Richard B. Wales,
+% taken in turn from material Copyright (C) 1985 by Leslie Lamport.
+
+%%%
+% Version checking.
+%%%
+\NeedsTeXFormat{LaTeX2e}
+\def\uclathmaversion{1.0 beta}
+\def\uclathmadate{1995/08/25}
+\ProvidesFile{uclathma}[\uclathmadate, \uclathmaversion]
+
+% The following commands set the thesis/dissertation title and author,
+% as well as the type size for printing the title.
+
+\def\@title{NO TITLE!?!}
+\def\@author{NO AUTHOR!?!}
+\def\@titlesize{\Large}
+\renewcommand{\title}[1]{\def\@title{#1}}
+\renewcommand{\author}[1]{\def\@author{#1}}
+\newcommand{\titlesize}[1]{\def\@titlesize{#1}}
+
+% The following commands set the department name.
+
+\newif\if@department
+\newcommand{\department}[1]{\def\@department{#1}\@departmenttrue}
+\newcommand{\nodepartment}{\@departmentfalse}
+\department{NO DEPARTMENT!?!}
+
+% The following commands will process the "MA", "MS", "PhD", or "EdD"
+% option.  (The default is "PhD".)
+
+\newcommand{\thesis}[1]
+   {\def\@thesisname{thesis}
+    \def\@Thesisname{Thesis}
+    \def\@degreename{#1}
+   }
+\newcommand{\blahfoo}[1]
+   {\def\@thesisname{blahfoo}
+    \def\@Thesisname{Blahfoo}
+    \def\@degreename{#1}
+   }
+\newcommand{\dissertation}[1]
+   {\def\@thesisname{dissertation}
+    \def\@Thesisname{Dissertation}
+    \def\@degreename{#1}
+   }
+\dissertation{Doctor of Philosophy}	% default
+\DeclareOption{PhD}{}			% default -- nothing more to do
+\DeclareOption{MA}{\thesis{Master of Arts}}
+\DeclareOption{MS}{\thesis{Master of Science}}
+\DeclareOption{EdD}{\dissertation{Doctor of Education}\@departmentfalse}
+
+% The following commands set the year in which the degree will be
+% awarded, as well as the year of copyright.
+
+\def\@degreeyear{\number\year}
+\def\@copyrightyear{\number\year}
+\newif\if@cyrset
+\@cyrsetfalse
+\newcommand{\degreeyear}[1]
+   {\def\@degreeyear{#1}\if@cyrset\else\def\@copyrightyear{#1}\fi}
+\newcommand{\copyrightyear}[1]{\def\@copyrightyear{#1}\@cyrsettrue}
+
