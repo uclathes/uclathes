@@ -1,13 +1,21 @@
 % POINT SIZE OPTION for UCLA thesis style
-% Taken from material Copyright (C) 1985 by Leslie Lamport
+% (C) Copyright 1995 by John Heidemann,
+% derived from work (C) Copyright 1988 Richard B. Wales,
+% taken in turn from material Copyright (C) 1985 by Leslie Lamport.
 
 %  ****************************************
 %  *               FONTS                  *
 %  ****************************************
 %
 
-\typeout{Document Style 'thesis12', version 0.90 BETA, 3/25/91.}
-\typeout{Bugs to wales@CS.UCLA.EDU}
+%%%
+% Version checking.
+%%%
+\NeedsTeXFormat{LaTeX2e}
+\def\uclathxiiversion{1.0 beta}
+\def\uclathxiidate{1995/05/11}
+\ProvidesFile{uclath12.clo}[\uclathxiidate, \uclathxiiversion]
+
 
 \lineskip 1pt            % \lineskip is 1pt for all font sizes.
 \normallineskip 1pt
@@ -36,35 +44,44 @@
 % must make a corresponding change to the "\@doublespacing" value in the
 % "thesis.sty" file in order to preserve 3-lines/inch double spacing.
 
-\def\@normalsize{\@setsize\normalsize{15.6pt}\xiipt\@xiipt
-\abovedisplayskip 12pt plus3pt minus7pt%
-\belowdisplayskip \abovedisplayskip
-\abovedisplayshortskip  \z@ plus3pt%   
-\belowdisplayshortskip  6.5pt plus3.5pt minus3pt}
+% johnh: my font sizes are taken from LaTeX2e's bk12.clo.
 
-\def\small{\@setsize\small{14.3pt}\xipt\@xipt
-\abovedisplayskip 11pt plus3pt minus6pt%
-\belowdisplayskip \abovedisplayskip
-\abovedisplayshortskip  \z@ plus3pt%   
-\belowdisplayshortskip  6.5pt plus3.5pt minus3pt
-\def\@listi{\parsep 4.5pt plus 2pt minus 1pt
-            \itemsep \parsep
-            \topsep 9pt plus 3pt minus 5pt}}
+\renewcommand\normalsize{%
+   \@setfontsize\normalsize\@xiipt{14.5}%
+   \abovedisplayskip 12\p@ \@plus3\p@ \@minus7\p@
+   \abovedisplayshortskip \z@ \@plus3\p@
+   \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
+   \belowdisplayskip \abovedisplayskip
+   \let\@listi\@listI}
 
-\def\footnotesize{\@setsize\footnotesize{13pt}\xpt\@xpt
-\abovedisplayskip 10pt plus2pt minus5pt%
-\belowdisplayskip \abovedisplayskip
-\abovedisplayshortskip  \z@ plus3pt%   
-\belowdisplayshortskip  6pt plus3pt minus3pt
-\def\@listi{\topsep 6pt plus 2pt minus 2pt\parsep 3pt plus 2pt minus 1pt
-\itemsep \parsep}}
-
-\def\scriptsize{\@setsize\scriptsize{10.4pt}\viiipt\@viiipt}
-\def\tiny{\@setsize\tiny{7.8pt}\vipt\@vipt}
-\def\large{\@setsize\large{18.2pt}\xivpt\@xivpt}
-\def\Large{\@setsize\Large{22.1pt}\xviipt\@xviipt}
-\def\LARGE{\@setsize\LARGE{26pt}\xxpt\@xxpt}
-\def\huge{\@setsize\huge{32.5pt}\xxvpt\@xxvpt}
+\newcommand\small{%
+   \@setfontsize\small\@xipt{13.6}%
+   \abovedisplayskip 11\p@ \@plus3\p@ \@minus6\p@
+   \abovedisplayshortskip \z@ \@plus3\p@
+   \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 9\p@ \@plus3\p@ \@minus5\p@
+               \parsep 4.5\p@ \@plus2\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\newcommand\footnotesize{%
+   \@setfontsize\footnotesize\@xpt\@xiipt
+   \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+   \abovedisplayshortskip \z@ \@plus3\p@
+   \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 6\p@ \@plus2\p@ \@minus2\p@
+               \parsep 3\p@ \@plus2\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\newcommand\scriptsize{\@setfontsize\scriptsize\@viiipt{9.5}}
+\newcommand\tiny{\@setfontsize\tiny\@vipt\@viipt}
+\newcommand\large{\@setfontsize\large\@xivpt{18}}
+\newcommand\Large{\@setfontsize\Large\@xviipt{22}}
+\newcommand\LARGE{\@setfontsize\LARGE\@xxpt{25}}
+\newcommand\huge{\@setfontsize\huge\@xxvpt{30}}
 \let\Huge=\huge
 
 \normalsize  % Choose the normalsize font.
@@ -91,7 +108,8 @@
 \headsep 0pt              %    Space between running head and text.
 % \topskip = 10pt         %    '\baselineskip' for first line of page.
                           % Bottom of page:
-\footheight 12pt          %    Height of box containing running foot.
+% johnh: footheight unused
+% \footheight 12pt          %    Height of box containing running foot.
 \footskip 0.6in           %    Distance from baseline of box containing
                           %    foot to baseline of last line of text.
 
@@ -125,7 +143,8 @@
                                          % at top or bottom of page.
 \intextsep 14pt plus 4pt minus 4pt       % Space between in-text figures and 
                                          % text.
-\@maxsep 20pt                            % The maximum of \floatsep, 
+% johnh: \@maxsep unused
+% \@maxsep 20pt                            % The maximum of \floatsep, 
                                          % \textfloatsep and \intextsep (minus
                                          % the stretch and shrink).
 
@@ -191,10 +210,10 @@
         \addcontentsline{toc}{part}{#1}\fi        % FI
    \markboth{}{}
     \ifnum \c@secnumdepth >-2\relax  % IF secnumdepth > -2
-      \normalsize\bf Part \thepart   %   THEN Print 'Part' and number
+      \normalsize\bfseries Part \thepart   %   THEN Print 'Part' and number
     \par                             %         in \normalsize bold.
     \vskip 20pt \fi                  %        Add space before title.
-    \huge \bf                        % FI
+    \huge \bfseries                        % FI
     #1\@endpart}                     % Print Title in \huge bold.
     
 % \@endpart finishes the part page
@@ -205,7 +224,7 @@
      \twocolumn               %   THEN \twocolumn 
    \fi}                       % FI
 
-\def\@spart#1{\normalsize \bf            % Print title in \normalsize boldface
+\def\@spart#1{\normalsize \bfseries            % Print title in \normalsize boldface
    #1\@endpart}
 
 % \@makechapterhead {TEXT} : Makes the heading for the \chapter command.
@@ -215,11 +234,11 @@
   \vspace*{20pt}                     % Space at top of text page.
   { \parindent 0pt \raggedright 
     \ifnum \c@secnumdepth >\m@ne     % IF secnumdepth > -1 THEN
-      \centering \Large\bf \@chapapp{} \thechapter % Print 'CHAPTER' and number.
+      \centering \Large\bfseries \@chapapp{} \thechapter % Print 'CHAPTER' and number.
       \par 
       \vskip 10pt                    % Space between number and title.
       \fi
-    \centering \Large\bf                        % Title.
+    \centering \Large\bfseries                        % Title.
     #1\par 
     \nobreak                         % TeX penalty to prevent page break.
     \vskip 20pt                      % Space between title and text.
@@ -228,10 +247,10 @@
 % \@makeschapterhead {TEXT} : Makes the heading for the \chapter* command.
 %
 
-\def\@makeschapterhead#1{             % Heading for \chapter* command
-   % \vspace*{20pt}                     % Space at top of page.
+\def\@makeschapterhead#1{            % Heading for \chapter* command
+   % \vspace*{20pt}                  % Space at top of page.
   { \parindent 0pt \raggedright 
-    \centering \large \sc                        % Title.
+    \centering \large \scshape       % Title.
     #1\par 
     \nobreak                         % TeX penalty to prevent page break.
     \vskip 20pt                      % Space between title and text.
@@ -286,16 +305,16 @@
 %  is normally defined to \@startsection + its first six arguments.
 
 \def\section{\@startsection {section}{1}{\z@}{-3.5ex plus 1ex minus 
-    .2ex}{2.3ex plus .2ex}{\large\bf}}
+    .2ex}{2.3ex plus .2ex}{\large\bfseries}}
 \def\subsection{\@startsection{subsection}{2}{\z@}{-3.25ex plus 1ex minus 
-   .2ex}{1.5ex plus .2ex}{\normalsize\bf}}
+   .2ex}{1.5ex plus .2ex}{\normalsize\bfseries}}
 \def\subsubsection{\@startsection{subsubsection}{3}{\z@}{-3.25ex plus 
-   1ex minus .2ex}{1.5ex plus .2ex}{\normalsize\bf}}
+   1ex minus .2ex}{1.5ex plus .2ex}{\normalsize\bfseries}}
 \def\paragraph{\@startsection
-     {paragraph}{4}{\z@}{3.25ex plus 1ex minus .2ex}{-1em}{\normalsize\bf}}
+     {paragraph}{4}{\z@}{3.25ex plus 1ex minus .2ex}{-1em}{\normalsize\bfseries}}
 \def\subparagraph{\@startsection
      {subparagraph}{4}{\parindent}{3.25ex plus 1ex minus 
-     .2ex}{-1em}{\normalsize\bf}}
+     .2ex}{-1em}{\normalsize\bfseries}}
 
 % Default initializations of \...mark commands.  (See below for their
 % us in defining page styles.
