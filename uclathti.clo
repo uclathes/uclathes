@@ -11,6 +11,47 @@
 \def\uclathtidate{1995/05/11}
 \ProvidesFile{uclathti}[\uclathtidate, \uclathtiversion]
 
+%
+% When this file is included from other than uclathes,
+% \@spacing may be undefined.
+%
+% NEEDSWORK:  This test always fails, even when uclathes.cls is loaded.
+\def\@stdsinglespacing{1.0}
+\ifx\@singlespacing\@stdsinglespacing
+  % Spacing has already been set (in uclathes.cls).
+\else
+  % Spacing was not set, set it here as if we were uclathes.cls.
+  \typeout{Spacing not set.}
+  \def\@singlespacing{1.0}
+  \def\@doublespacing{1.544}	  % see above for explanation of value
+  \let\@spacing=\@singlespacing
+\fi
+
+%
+% The following macro pair save and restore ``twocolumn'' status.
+%
+\newif\if@ColumnSaveValue
+\newcommand{\ColumnSave}{
+  \if@twocolumn
+    \@ColumnSaveValuetrue
+    \typeout{Twocol-saved.}
+  \else
+    \@ColumnSaveValuefalse
+  \fi
+  \pagebreak
+  \onecolumn
+}
+\newcommand{\ColumnSaveHeading}[1]{
+  \if@twocolumn
+    \@ColumnSaveValuetrue
+    \twocolumn[#1]
+  \else
+    \@ColumnSaveValuefalse
+    #1
+  \fi
+}
+\newcommand{\ColumnRestore}{\if@ColumnSaveValue\twocolumn\fi}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %								       %
 %			      TITLE PAGE			       %
@@ -19,7 +60,7 @@
 
 \newcommand\@maketitlepage{
    \begin {titlepage}
-      \pagebreak
+      \ColumnSave
       \begin {center}
          \textsc{\large University of California} \\
          \normalsize Los Angeles \\
@@ -37,7 +78,7 @@
          \vfill
          {\normalsize \@degreeyear}
       \end {center}
-      \newpage
+      \ColumnRestore
    \end {titlepage}
 }
 
@@ -55,7 +96,7 @@
 \newcommand\copyrightinfo[1]{\def\@copyrightinfo{#1}}
 
 \newcommand\@makecopyrightpage{
-   \pagebreak
+   \ColumnSave
    \thispagestyle{empty}
    \null
    \vfill
@@ -69,7 +110,7 @@
 	 \@author \\ \@copyrightyear
       \end{center}
    \fi
-   \newpage
+   \ColumnRestore
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,14 +150,14 @@
 % changed, it may be desirable to change the "\vskip" before the name.
 
 \newcommand\@signatureline[1]{
-   \rule{4in}{0.01in} \\ \vskip-12pt{#1} \\
+   \rule{4in}{0.01in} \\ \vskip-10pt{#1} \\
    \vskip 36pt plus0pt minus15pt%
 }
 
 \newcommand\@makesignaturepage{
    \pagenumbering{roman}
    \setcounter{page}{2}
-   \pagebreak
+   \ColumnSave
    \noindent
    \renewcommand\baselinestretch{\@doublespacing}\@normalsize
    \normalsize \normalfont The \@thesisname\ of \@author\ is approved.
@@ -145,7 +186,7 @@
    \begin {center}
       University of California, Los Angeles \\ \@degreeyear
    \end {center}
-   \newpage
+   \ColumnRestore
    \renewcommand\baselinestretch{\@spacing}\@normalsize
 }
 
@@ -161,7 +202,8 @@
 
 \newcommand\@makededication{
    \if@dedication
-      \pagebreak\par\pagestyle{plain}
+      \ColumnSave
+      \par\pagestyle{plain}
       \renewcommand\baselinestretch{\@spacing}\@normalsize\normalfont
       \vspace*{0pt}		% force spacing at top of page
       \vfill
@@ -169,7 +211,7 @@
 	 \@dedication
       \end{center}
       \vfill
-      \newpage
+      \ColumnRestore
    \fi
 }
 
@@ -183,17 +225,21 @@
 \def\@acknowledgments{}
 \newcommand\acknowledgments[1]{\@ackstrue\def\@acknowledgments{#1}}
 
+\newcommand\@makeacknowledgmentsheading{
+   \centering
+   \textsc{\large Acknowledgments}
+   \vskip 12pt
+}
+
+
 \newcommand\@makeacknowledgments{
    \if@acks
-      \pagebreak\par\pagestyle{plain}
+      \ColumnSaveHeading{\@makeacknowledgmentsheading}
+      \par\pagestyle{plain}
       \renewcommand\baselinestretch{\@spacing}\@normalsize
-      \begin {center}
-         \textsc{\large Acknowledgments}
-      \end {center}
-      \vskip 12pt
       \noindent \normalsize \normalfont \@acknowledgments
       \vfill
-      \newpage
+      \ColumnRestore
    \fi
 }
 
@@ -302,7 +348,8 @@
 \newcommand\@makevitapage{
    \renewcommand\arraystretch{1.67}
    \ifnum\c@vitaitems>0
-      \pagebreak\par\pagestyle{plain}
+      \ColumnSave
+      \par\pagestyle{plain}
       \renewcommand\baselinestretch{\@spacing}\@normalsize
       \begin{center}
          \textsc{\large Vita} \\
@@ -377,7 +424,7 @@
          \ifnum\c@publications>24 \@printpubitem{\@pubY} \fi
          \ifnum\c@publications>25 \@printpubitem{\@pubZ} \fi
       }
-      \newpage
+      \ColumnRestore
    \fi\fi
 }
 
@@ -393,7 +440,8 @@
 
 \newcommand\@makeabstractpage{
    \if@abstract
-      \pagebreak\par\pagestyle{plain}
+      \ColumnSave
+      \par\pagestyle{plain}
       \begin{center}
          \textsc{\large Abstract of the \@Thesisname}\\[12pt]
          \textbf{\@titlesize \@title}\\[12pt]
@@ -419,7 +467,9 @@
       \@abstract
       \newpage \pagenumbering{arabic}
       \renewcommand\baselinestretch{\@spacing}\@normalsize
-   \else \typeout{No abstract.}
+      \ColumnRestore
+  \else
+      \typeout{No abstract.}
    \fi
 }
 
@@ -430,9 +480,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand\makeintropages{
-   \@figurestrue
-   \@tablestrue
    \@maketitlepage
+   % If we're printing two sided,
+   % insert a blank page for the back of the title page.
+   % NOTE:  This extra page makes the output non-conforming
+   % to the RFTADP, unless you throw it away.
+   \if@twoside
+     \newpage   % the back side of the title page
+   \fi
    \@makecopyrightpage
    \@makesignaturepage
    \@makededication
