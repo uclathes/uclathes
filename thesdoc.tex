@@ -1,5 +1,5 @@
-\batchmode
-\documentstyle {article}
+
+\documentclass {article}
 
 \setlength {\textwidth} {6in}
 \setlength {\textheight} {8in}
@@ -8,37 +8,29 @@
 \setlength {\evensidemargin} {0.25in}
 \addtolength {\parskip} {1ex}
 
-\newcommand {\caps}[1] {\mbox {\ifnum\fam=0 \sc\else\uppercase\fi{#1}}}
+\newcommand {\caps}[1] {\mbox {\ifnum\fam=0 \scshape\else\uppercase\fi{#1}}}
 
 \newcommand {\tdadvisor} {Theses and Dissertations Advisor}
 \newcommand {\csd} {Computer Science Department}
-\newcommand {\eg} {{\em e.g.}}
-\newcommand {\ie} {{\em i.e.}}
-\newcommand {\later} {\noindent{\em(*** more to be written later ***)}}
 \newcommand {\regs} {{\sl Regulations for Thesis
 		      and Dissertation Preparation}}
 \newcommand {\ucla} {\caps {ucla}}
 \newcommand {\uclacsd} {\ucla\ \csd}
 \newcommand {\umi} {\caps {umi}}
 
-\title	{{\large \sc *** Preliminary Draft ***} \\
-	 Formatting Theses and Dissertations \\
-	 in the \uclacsd \\ Using \LaTeX \\
-	 and the {\tt thesis} Document Style}
+\title	{ Formatting UCLA Theses and Dissertations \\
+	 Using \LaTeX \\
+	 and the \texttt{uclathes} Document Style}
 \author {Rich Wales}
 \date{}
 \begin {document}
 \maketitle
 
-{\slshape
-Note:  The \verb|thesis| document style for \LaTeX\ 2.09
-  is no longer actively maintained.
-This style has been used to successfully format several
-  theses,
-  but the current version is \verb|uclathes| for \LaTeX 2e.
-The \verb|uclathes| package is available from
-  \verb|<http://www.cs.ucla.edu/ficus-members/johnh/latex.html>|.
-  ---John Heidemann, 11 May 1995}
+{\slshape  Maintainer's note:
+  This document was written by Rich Wales for his \verb|thesis| style.
+  I've updated it for the \verb|uclathes| style for \LaTeX 2e.
+  Typos are probably mine.
+   ---John Heidemann.}
 
 
 This document explains how to format your thesis%
@@ -57,12 +49,13 @@ It describes a special ``document style'' macro package
 which, it is believed, will meet \ucla's requirements
 regarding type size, layout, spacing, and margins.
 
-These instructions are {\em not\/} intended to replace
+These instructions are not intended to replace
 the \ucla\ Graduate Division's publication, \regs.
 All graduate students should obtain a copy of this publication,
-read it carefully, and check again {\em in advance\/}
+read it carefully, and check again in advance
 of the filing deadline to see if any changes have been made
 to the requirements.
+
 
 \section {Thesis and Dissertation Format Requirements}
 
@@ -103,37 +96,42 @@ must conform to known standards.
 
 \item
 Page numbering must be done in a standardized, consistent fashion,
-so as to ensure that errors (\eg, missed pages)
+so as to ensure that errors (such as missed pages)
 will not occur in either the binding or the microfilming process.
 
 \end {itemize}
 
-It is {\em crucial\/} that a thesis manuscript
+It is crucial that a thesis manuscript
 should conform to the University's formatting requirements.
-A non-conforming manuscript {\em will not be accepted\/} for filing---%
-{\em even\/} if the content has been approved
+A non-conforming manuscript will \emph{not} be accepted for filing---%
+even if the content has been approved
 by the student's committee;
-{\em even\/} if (in the case of a problem with the signature page)
+even if (in the case of a problem with the signature page)
 one or more committee members are not available to sign again;
-and {\em even\/} if not enough time remains for the student
+and even if not enough time remains for the student
 to redo the manuscript and file a satisfactory copy by the deadline.
+You snooze, you loose.
 
 In order to avoid last-minute disasters,
-the \ucla\ \tdadvisor\ strongly urges {\em all\/} graduate students
+the \ucla\ \tdadvisor\ strongly urges \emph{all} graduate students
 to submit a sample of their thesis manuscript
 (including all the preliminary pages)
-for review and approval {\em well in advance\/} of the filing deadline.
+for review and approval well in advance of the filing deadline.
+Think about how long you've been here---can't you really 
+  manage to get that dissertation to Powell slightly before the
+  last day to file?
 
-\section {Using the \LaTeX\ {\tt thesis} Style}
+
+\section {Using the \LaTeX\ \texttt{uclathes} Style}
 
 This section describes how to set up
 the \LaTeX\ input for your thesis
-to use the \verb+thesis+ document style macros.
+to use the \verb|uclathes| document style macros.
 
 \subsection {Overall \LaTeX\ Source File Format}
 
 Following are two sample \LaTeX\ input files
-which illustrate the proper use of the \verb+thesis+
+which illustrate the proper use of the \verb+uclathes+
 document style.
 
 Figure~\ref{fig:toplevel}
@@ -150,7 +148,7 @@ The \verb+\documentstyle+ command at the start of the \LaTeX\ input text
 should have the following form:
 
 \begin {center}
-\verb+\documentstyle [+{\sl options\/}\verb+] {thesis}+
+\verb+\documentstyle [+{\sl options\/}\verb+] {uclathes}+
 \end {center}
 
 where {\sl options} is one of the following:
@@ -168,32 +166,32 @@ where {\sl options} is one of the following:
 Note that capitalization is important:
 \verb+ms+, \verb+PHD+, or \verb+phd+ will {\em not\/} work.
 
-The \verb+thesis+ document style is basically the same
+The \verb+uclathes+ document style is basically the same
 as the standard \LaTeX\ \verb+report+ style,
 as far as the body of the text is concerned.
 
 \subsection {The $\backslash${\tt bibliographystyle} Command}
 
-There is a matching \verb+thesis+ bibliography style
+There is a matching \verb+uclathes+ bibliography style
 which should be used in conjunction with
-the \verb+thesis+ document style.
-To use the \verb+thesis+ bibliography style,
+the \verb+uclathes+ document style.
+To use the \verb+uclathes+ bibliography style,
 use the following \verb+\bibliographystyle+ command
 near the end of your \LaTeX\ input
 (just before the \verb+\end {document}+ command):
 
-\begin {center} \verb+\bibliographystyle {thesis}+ \end {center}
+\begin {center} \verb+\bibliographystyle {uclathes}+ \end {center}
 
-The \verb+thesis+ bibliography style is similar to the
+The \verb+uclathes+ bibliography style is similar to the
 standard Bib\TeX\ \verb+alpha+ style.
-One important new feature in the \verb+thesis+ style is
+One important new feature in the \verb+uclathes+ style is
 the addition of a new \verb+annote+ field in a reference,
 which can be used to produce an annotated bibliography.
 
 \begin {figure}
 {\small
 \begin{verbatim}
-\documentstyle [PhD] {thesis}
+\documentstyle [PhD] {uclathes}
 \input {mymacros}                         % personal LaTeX macros
 \input {prelim}                           % preliminary page info
 \begin {document}
@@ -207,7 +205,7 @@ which can be used to produce an annotated bibliography.
 \input {chapter7}
 \input {chapter8}
 \bibliography {bib/network,bib/naming}    % bibliography references
-\bibliographystyle {thesis}
+\bibliographystyle {uclathes}
 \end {document}
 \end{verbatim}
 }
@@ -316,18 +314,18 @@ which can be used to produce an annotated bibliography.
 
 In order to ensure that the preliminary pages
 of the thesis are in the proper format,
-the \verb+thesis+ document style macros
+the \verb+uclathes+ document style macros
 include all the instructions necessary
 to produce these pages.
 All you, the student, need to do
 is to specify the various pieces of information
 (names, titles, etc.)
 in a series of special commands as described below.
-These commands should be placed at the very {\em beginning\/}
+These commands should be placed at the very beginning
 of the \LaTeX\ input---%
 {\em before\/} the \verb+\begin {document}+ command.
 The very first command
-{\em after\/} the \verb+\begin {document}+ command
+after the \verb+\begin {document}+ command
 should be the \verb+\makeintropages+ command already described.
 
 Although it is by no means mandatory,
@@ -343,7 +341,7 @@ in your main source file.
 Note that those headings on preliminary pages
 which are shown in FULL CAPITALS in \regs\
 are produced in {\sc Upper/Lower Small Capitals}
-by the \verb+thesis+ document style.
+by the \verb+uclathes+ document style.
 Also, the thesis title---%
 as well as the student's name on the title page---%
 will appear in large, bold type.
@@ -377,17 +375,15 @@ via an \verb+\author+ command, as follows:
 Be sure that your name is specified {\em exactly\/}
 as it appears on official University records;
 otherwise, you will run into major trouble
-when you attempt to file.
+when you attempt to file\footnote{
+	Rich Wales isn't kidding.
+	Another person on the Ficus project's thesis
+	  was (temporarily) rejected because
+	  he didn't spell out his middle name to match
+	  university records.
+	}.
 
-The department name should be specified as follows:%
-\footnote {Even though the department name
-will always be the same
-for everyone in the \csd,
-it has been left as a variable
-in the \verb+thesis+ document style,
-in anticipation of a future time
-when the \verb+thesis+ style might come
-into more general use throughout UCLA.}
+The department name should be specified as follows:
 
 \begin {center}
 \verb+\department {Computer Science}+
@@ -395,7 +391,7 @@ into more general use throughout UCLA.}
 
 Normally, the year in which your degree will be granted
 will be the same as the current year
-(\ie, the year in which you are printing your manuscript).
+(that is, the year in which you are printing your manuscript).
 However, if you do your printing in December
 after the filing deadline for Fall Quarter,
 your degree will not actually be granted until Winter Quarter,
@@ -409,7 +405,7 @@ via a \verb+\degreeyear+ command, as follows:
 Note that the text below the thesis title will be split across lines
 in a manner slightly different from that shown in the sample title
 pages in the \regs.
-The text produced by the \verb+thesis+ style will read as follows
+The text produced by the \verb+uclathes+ style will read as follows
 (for a Ph.D. dissertation; similarly for a master's thesis):
 
 \begin {center}
@@ -419,7 +415,7 @@ Doctor of Philosophy in Computer Science
 \end {center}
 
 The reason I did this was to make the awkward wording specified by
-the university (\ie, the omission of the word ``of'' after the
+the university (particularly the omission of the word ``of'' after the
 word ``degree'') somewhat more palatable.
 The last time I checked, the \tdadvisor\ had no objections to
 this change in line formatting, as long as the wording itself were
@@ -444,7 +440,7 @@ The following commands exist to cover unusual situations.
 In the unlikely event that you have already
 published your thesis prior to filing,
 you should specify the actual year of copyright
-(\ie, the year of first publication) as follows:
+(the year of first publication) as follows:
 
 \begin {center}
 \verb+\copyrightyear {+{\sl year\/}\verb+}+
@@ -452,17 +448,17 @@ you should specify the actual year of copyright
 
 If this year is different from the year
 in which the degree is granted,
-\LaTeX\ will include {\em both\/} years (separated by a comma)
+\LaTeX\ will include both years (separated by a comma)
 in the copyright notice.
 
-It is {\em not\/} necessary
+It is not necessary
 to include a \verb+\copyrightyear+ command
 solely because you are filing in December
 and will not be receiving your degree until Winter Quarter.
 
 \item
 If, for some unusual reason,
-you explicitly {\em do not\/} wish to include
+you explicitly do not wish to include
 a copyright notice in your manuscript,
 you can suppress it via the following command:
 
@@ -471,21 +467,22 @@ you can suppress it via the following command:
 Note that, under the provisions of the Berne copyright convention,
 which went into effect on 1~April 1989, and to which the U.S.\ is a
 signatory, your thesis is considered to be copyrighted
-{\em even if you omit the copyright notice.}
+even if you omit the copyright notice.
 
 \end {itemize}
 
-The \regs\ currently do {\em not\/} permit the inclusion of the
+The \regs\ currently do not permit the inclusion of the
 phrase ``All Rights Reserved'' in the copyright notice of a
 thesis or dissertation.%
 \footnote {This phrase is essential for proper copyright protection
 in certain South American countries which are signatories {\em only\/}
 to the older Pan American Copyright Convention.
-Although ``All Rights Reserved'' has {\em no\/} extra effect
+Although ``All Rights Reserved'' has no extra effect
 under U.S.\ copyright law, virtually all books currently published
 in the United States include this phrase in the copyright notice.}
 See the section below, ``Possible Future Developments'',
 for more on this issue.
+
 
 \subsection {Signature Page}
 
@@ -504,7 +501,7 @@ Each remaining committee member is specified as follows:
 If the first two members of your committee are co-chairs, then use two
 \verb+\chair+ commands to list them.
 
-The members of the committee should be named in the {\em same order\/}
+The members of the committee should be named in the \emph{same order}
 as they appeared on your ``Nomination of Committee'' form
 (with the chair or co-chairs first).
 \LaTeX\ will output the names in the {\em opposite\/} order
@@ -549,7 +546,7 @@ Here are some guidelines which should help:
 
 \item
 A {\em dedication\/} is a way of making particular mention
-of a person who is {\em very\/} close and special to you---%
+of a person who is very close and special to you---%
 such as a spouse, other family member, very close friend,
 or other person who has been particularly instrumental
 or supportive in your life,
@@ -557,7 +554,7 @@ and without whose influence the degree work
 (or even your entire academic career)
 might never have been completed.
 
-A dedication should be used {\em only\/}
+A dedication should be used only
 when there is a close emotional bond
 between you and the person named.
 Unless the dedication is expected to
@@ -566,11 +563,11 @@ you should seriously consider instead
 mentioning him or her in your ``Acknowledgments'',
 if at all.
 
-A proper dedication will {\em almost always\/}
+A proper dedication will almost always
 start out with the word ``to'',
 and will rarely if ever be a complete sentence
 (though it is perfectly proper to include
-a {\em brief\/} explanation of why the person named
+a brief explanation of why the person named
 in the dedication has been important to you).
 A dedication should not normally be
 more than three or four lines long.
@@ -585,16 +582,17 @@ in which you have obtained permission from others
 for the use of their copyrighted material in your thesis
 (see \regs\ for more detail on this subject).
 
-Acknowledgments should {\em always\/}
+Acknowledgments should always
 be in the form of complete sentences.
 
 \end {itemize}
 
+
 \subsection {Vita, Publications, and Presentations}
 
 Vita (life history), publication, and presentation information
-should be included {\em only\/} in doctoral dissertations---%
-{\em not\/} in master's theses.
+should be included only in doctoral dissertations---%
+not in master's theses.
 
 Each ``vita'' item should be specified
 via a separate command of the following form:
@@ -605,7 +603,7 @@ via a separate command of the following form:
 
 Each ``vita'' item is printed in two columns:
 a narrow column on the left for the {\sl date,}
-and a wider column on the right for the {\sl text.}
+and a wider column on the right for the {\sl text}.
 
 The ``vita'' items should be specified in chronological order,
 as they will be printed in the order given.
@@ -628,11 +626,12 @@ it is your responsibility to do all necessary formatting yourself.
 The ``publication'' and/or ``presentation'' items
 will be printed in a single, unified list,
 in the order specified.
-The \verb+thesis+ document style macros
+The \verb+uclathes+ document style macros
 will automatically generate the proper heading
 ({\sc Publications}, {\sc Presentation},
 or {\sc Publications and Presentations}),
 as appropriate.
+
 
 \subsection {Abstract}
 
@@ -648,6 +647,8 @@ is taken from the corresponding data
 for the title and signature pages,
 and need not be specified a second time.
 
+
+
 \section {Things to Avoid}
 
 In order to ensure that your thesis manuscript
@@ -656,41 +657,42 @@ it is essential that you {\em do not\/} indulge in
 certain practices that would disrupt the standard format.
 The following list is not intended to be exhaustive,
 but indicates various common things
-which you {\em must not do:}
+which you must not do:
 
 \begin {itemize}
 
 \item
-Do not attempt to change the {\em margins.}
-Any \verb+\setlength+ commands affecting such values as
+Do not attempt to change the margins.
+Most \verb+\setlength+ commands affecting such values as
 \verb+\textwidth+, \verb+\textheight+, \verb+\topmargin+,
 \verb+\oddsidemargin+, or \verb+\evensidemargin+
-should be avoided at all costs.
+will render your thesis unacceptable to the \tdadvisor.
+
 
 \item
-Do not disturb the {\em page numbering.}
-In particular, you {\em must not\/} attempt
+Do not disturb the page numbering.
+In particular, you must not attempt
 to use a page-numbering scheme
 in which the page number starts over for each new chapter
-(\eg, page number ``3-1'' for the first page of Chapter~3).
+(for example, page number ``3-1'' for the first page of Chapter~3).
 
 The University regulations are quite strict
 regarding the required method of numbering pages;
-{\em any\/} deviation from the default scheme
-{\em will\/} result in an unacceptable manuscript.
+any deviation from the default scheme
+will result in an unacceptable manuscript.
 
 \item
-Do not try to specify {\em small type sizes.}
-The default (12-point) type used by the \verb+thesis+ style macros
+Do not try to specify small type sizes.
+The default (12-point) type used by the \verb+uclathes+ style macros
 is the smallest acceptable size for a thesis manuscript.%
-\footnote {The occasional {\em default} appearance of smaller type
+\footnote {The occasional (default) appearance of smaller type
 in superscripts, footnotes, and the like is acceptable;
 don't worry about this.}
 
 \item
-Do not try to use {\em marginal notes\/}
+Do not try to use marginal notes
 (\verb+\marginpar+ command).
-{\em Absolutely no\/} text---%
+Absolutely no text---%
 not even occasional marginal notes---%
 is permitted to fall outside the official margins.
 
@@ -716,9 +718,9 @@ and it should therefore not be attempted.
 {\em Running footers\/} are permissible.
 However, you must take special care to ensure
 that the footer text remains within the margins for regular text
-(\ie, at least 1.25 inches from the bottom edge of the paper),
-{\em and\/} that the page number remains in its default position.
-In particular, the page number may {\em not\/} be moved up
+(that is, at least 1.25 inches from the bottom edge of the paper),
+and that the page number remains in its default position.
+In particular, the page number may not be moved up
 onto the same line with a running footer.
 
 \end {itemize}
@@ -726,30 +728,30 @@ onto the same line with a running footer.
 \section {Line Spacing in Manuscripts}
 
 Traditionally, \ucla\ has required that the text of a thesis
-be {\em double-spaced\/} (3~lines per inch).
+be double-spaced (3~lines per inch).
 While this requirement is generally considered
 to be appropriate for typewritten material,
 many people feel that double-spacing
 of the output of modern laser printers
 is not necessary to ensure easy readability of the manuscript,
-and may indeed {\em detract\/} from readability.
+and may indeed detract from readability.
 
 Even though \regs\ requires double spacing,
 it appears that the \ucla\ \tdadvisor\ will in fact accept
-manuscripts with {\em one-and-a-half spacing\/}
-(\ie, 4.5 lines per inch)
+manuscripts with one-and-a-half spacing
+(that is, 4.5 lines per inch)
 under certain conditions.
 In order to produce one-and-a-half spacing,
 add a comma and the word \verb+single+
 to the \verb+\documentstyle+ line, thusly:
 
 \begin {center}
-\verb+\documentstyle [PhD,single] {thesis}+ \\
+\verb+\documentstyle [PhD,single] {uclathes}+ \\
 {\em or} \\
-\verb+\documentstyle [MS,single] {thesis}+
+\verb+\documentstyle [MS,single] {uclathes}+
 \end {center}
 
-The \verb+single+ option will {\em not\/} affect the spacing
+The \verb+single+ option will not affect the spacing
 of the {\em abstract.}
 The \tdadvisor\ continues to require abstracts to be double-spaced.%
 \footnote {One good reason for this is that University Microfilms
@@ -760,14 +762,14 @@ UMI has stated that it finds double-spaced abstracts
 much easier for their personnel to transcribe.}
 
 If you intend to use the \verb+single+ option,
-it is {\em imperative\/} that you bring a sample of your manuscript
+it is imperative that you bring a sample of your manuscript
 to the \tdadvisor\ (141 Powell Library, 825-3625)
 for review and approval
-{\em well in advance\/} of the filing deadline---%
+well in advance of the filing deadline---%
 if at all possible, by the beginning of the quarter
 during which filing will take place.
 The material submitted for review
-should include {\em all\/} preliminary pages,
+should include all preliminary pages,
 as well as a representative sampling of the body of the text.
 This is crucially important, for two reasons:
 
@@ -809,20 +811,26 @@ enforceable copyright notice.
 Add the word ``of'' after the word ``degree'' on the title page.
 If I cannot get this changed, I will propose that the sample title
 pages in the \regs\ be modified to put the degree name on a line
-by itself (\ie, start a new line after the word ``degree'')---%
-which is the way the \verb+thesis+ style will do it already.
+by itself (start a new line after the word ``degree'')---%
+which is the way the \verb+uclathes+ style will do it already.
 
 \end {itemize}
 
 If any changes are adopted in these areas by the Graduate Division,
-I will modify the \verb+thesis+ macros accordingly.
+I will modify the \verb+uclathes+ macros accordingly.
 In particular, if one-and-a-half line spacing becomes official,
 I will probably modify the macros to make such spacing the default.
+
+
+{\slshape  Maintainer's note:  These were Rich Wales' future developments.
+I do not know the status of either, and I am not pursuing them myself.
+   ---John.}
+
 
 \section {If the Dissertation Advisor Gives You Trouble}
 
 As mentioned earlier, you should plan to bring a sample of your
-manuscript to the Thesis and Dissertation Office {\em well\/} in
+manuscript to the Thesis and Dissertation Office well in
 advance of your planned filing date.
 This is especially true if you plan to use the \verb+single+
 line-spacing option---%
@@ -834,11 +842,19 @@ as well as a representative sample of your text.
 There is a possibility that the \tdadvisor\ may object to some
 aspect of your manuscript.
 If it appears that the Advisor is unwilling to accept some feature
-that is produced via the \verb+thesis+ macros
-(\eg, the selection of fonts on the preliminary pages,
+that is produced via the \verb+uclathes+ macros
+(for example, the selection of fonts on the preliminary pages,
 or the line spacing if you are using the \verb+single+ option),
 please get as much {\em specific\/} information as possible
 regarding what she is objecting to,
 and let me know right away.
 
+{\slshape  Maintainer's note:  I'm very interested
+  in hearing about objections the \tdadvisor\ has to
+  the default format provided by \verb|uclathes|.
+   ---John.}
+
 \end {document}
+% LocalWords:  umi uclathes microfilming snooze documentstyle ms phd annote tex
+% LocalWords:  bibliographystyle diss Connectionless Gerla San prelim Los Berne
+% LocalWords:  MADHOUS signatory signatories co de
