@@ -112,6 +112,14 @@ I purposely did not include one of these packages in uclathes.cls to
 encourage people to convert to the new macros.
 
 
+2.  If you don't specify a \degreeyear, the value on the title page
+may be wrong.  (This bug occurs in demo.ps.)
+
+Work around:  always specify \degreeyear.
+
+Alternate work around:  find a real uclathes maintainer to fix the bug.
+
+
 WHAT TO DO ABOUT BUGS
 ---------------------
 
