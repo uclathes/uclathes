@@ -1,0 +1,77 @@
+
+%
+% introduction.tex
+% Copyright (C) 1995 by John Heidemann, <johnh@isi.edu>.
+% $Id: demo2int.tex,v 1.1 1996/01/12 18:13:58 johnh Exp $
+%
+
+\chapter{Introduction}
+
+\noindenthack
+Filing services are one of the most user-visible
+  parts of the operating system,
+  so it is not surprising that 
+  many new services are proposed
+  by researchers
+  and that a variety of third parties are interested in providing
+  these solutions.
+Of the many innovations which have been proposed,
+  very few have become widely available
+  in a timely fashion.
+We believe this delay results from two deficiencies
+  in practices of current file-system development.
+First,
+  file systems are large and difficult to implement.
+This problem is compounded because
+  no good mechanism exists to allow
+  new services to build on those which already exist.
+Second,
+  file systems today are built around a few fixed interfaces
+  which fail to accommodate the change and evolution inherent in
+  operating systems development.
+Today's filing interfaces vary from
+  system to system,
+  and even between point releases of a 
+  single operating system.
+These differences greatly complicate and therefore discourage
+  third-party development and adoption of filing extensions.
+
+These problems raise barriers to the widespread
+  development, deployment, and maintenance of new filing
+  services.
+The thesis of this dissertation is that
+  a layered,
+  \emph{stackable} structure
+  with an \emph{extensible} interface
+  provides a much better methodology
+  for file-system development.
+We propose construction of filing services from a number
+  of potentially independently developed modules.
+By stackable,
+  we mean that these modules are bounded by
+  identical, or \emph{symmetric}, interfaces above and below.
+By extensible, we mean that these interfaces
+  can be independently changed by multiple parties,
+  without invalidating existing or future work.
+
+To validate this thesis we developed a
+  framework supporting stackable file-systems
+  and used that framework to construct several
+  different filing services.
+This dissertation describes the design,
+  implementation,
+  and evaluation of this system.
+
+
+% \input{motivation}
+
+
+
+% \section{Related Work}
+%	\label{sec:intro_related_work}
+
+% ...
+
+
+% LocalWords:  Posix Novell's Netware Kernighan Madnick Alsop NeFS PostScript
+% LocalWords:  Rosenthal SunSoft NEEDSWORK Wong
