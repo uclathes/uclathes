@@ -16,7 +16,7 @@ all:  latex dvips
 tar: $(FILES)
 	tar cvf uclathes.tar $(FILES)
 
-tar.gz: $(FILES)
+tar.gz: latex dvips
 	tar czvf uclathes.tar.gz $(FILES)
 
 latex: latex.demo latex.demo2rep latex.demo2the latex.thesdoc
