@@ -96,6 +96,13 @@
 % the text will fall within the UCLA thesis margin limits even if photo-
 % copying enlarges or misaligns it slightly.
 
+%
+% According to the Feb. 1995 revision of RfTaDP,
+% margins are to be 1.5'' left, 1'' top and right, and 1.5'' bottom.
+% I've checked these margins with dvips 5.58 output to a LaserJet IV
+% and they matched.   -johnh, 20-Jun-95
+%
+
 % SIDE MARGINS:
 \oddsidemargin 0.65in     %   Note that \oddsidemargin = \evensidemargin
 \evensidemargin 0.65in    % these are added to the 1 inch margin.
@@ -116,7 +123,7 @@
 
 % DIMENSION OF TEXT:
 
-\textheight 8.5in        % Height of text (including footnotes and fig-
+\textheight 8.25in       % Height of text (including footnotes and fig-
                          % ures, excluding running head and foot).
 \textwidth 5.7in         % Width of text line.
 
@@ -304,12 +311,22 @@
 %  there should be no [ALTHEADING] argument.  A sectioning command
 %  is normally defined to \@startsection + its first six arguments.
 
+\ifthenelse{\boolean{hyphenatetitles}}{%
+	\newcommand{\TitleHyphenation}{}%
+	}{%
+	\newcommand{\TitleHyphenation}{%
+		\pretolerance=10000%
+		\hyphenpenalty=200%
+		\raggedright}%
+	}
+
 \def\section{\@startsection {section}{1}{\z@}{-3.5ex plus 1ex minus 
-    .2ex}{2.3ex plus .2ex}{\large\bfseries}}
+    .2ex}{2.3ex plus .2ex}{\large\bfseries\TitleHyphenation}}
 \def\subsection{\@startsection{subsection}{2}{\z@}{-3.25ex plus 1ex minus 
-   .2ex}{1.5ex plus .2ex}{\normalsize\bfseries}}
+   .2ex}{1.5ex plus .2ex}{\normalsize\bfseries\TitleHyphenation}}
 \def\subsubsection{\@startsection{subsubsection}{3}{\z@}{-3.25ex plus 
-   1ex minus .2ex}{1.5ex plus .2ex}{\normalsize\bfseries}}
+   1ex minus .2ex}{1.5ex plus .2ex}{\normalsize\bfseries\TitleHyphenation}}
+% Because \{sub,}paragraph are in-line, we allow hyphenation always.
 \def\paragraph{\@startsection
      {paragraph}{4}{\z@}{3.25ex plus 1ex minus .2ex}{-1em}{\normalsize\bfseries}}
 \def\subparagraph{\@startsection
@@ -379,7 +396,8 @@
 \labelsep .5em
 \parsep 5pt plus 2.5pt minus 1pt
 
-\def\@listi{\leftmargin\leftmargini}
+\def\@listI{\leftmargin\leftmargini}
+\let\@listi\@listI
 
 \def\@listii{\leftmargin\leftmarginii
    \labelwidth\leftmarginii\advance\labelwidth-\labelsep
