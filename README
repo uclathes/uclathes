@@ -20,6 +20,13 @@ earlier version of this style package for LaTeX 2.09.  Degrees
 were granted, so don't lose all hope.
 
 
+WHAT IS NEW WITH UCLATHES 1.2?
+------------------------------
+
+There's a bug in \degreeyear handling.  The workaround is described
+below in ``KNOWN PROBLEMS''.
+
+
 WHAT IS NEW WITH UCLATHES 1.1?
 ------------------------------
 
