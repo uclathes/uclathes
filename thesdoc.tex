@@ -26,9 +26,11 @@
 \begin {document}
 \maketitle
 
-{\slshape  Maintainer's note:
-  This document was written by Rich Wales for his \verb|thesis| style.
-  I've updated it for the \verb|uclathes| style for \LaTeX 2e.
+\newcommand{\MaintainNote}[1]{{\slshape Maintainer's note:  #1}}
+
+\MaintainNote{
+  This document was written by Rich Wales for his \texttt{thesis} style.
+  I've updated it for the \texttt{uclathes} style for \LaTeX 2e.
   Typos are probably mine.
    ---John Heidemann.}
 
@@ -142,13 +144,13 @@ via \verb+\input+ commands.
 Figures~\ref{fig:prelim1} and \ref{fig:prelim2}
 show the commands for setting up the preliminary pages.
 
-\subsection {The $\backslash${\tt documentstyle} Command}
+\subsection {The $\backslash${\tt documentclass} Command}
 
-The \verb+\documentstyle+ command at the start of the \LaTeX\ input text
+The \verb+\documentclass+ command at the start of the \LaTeX\ input text
 should have the following form:
 
 \begin {center}
-\verb+\documentstyle [+{\sl options\/}\verb+] {uclathes}+
+\verb+\documentclass [+{\sl options\/}\verb+] {uclathes}+
 \end {center}
 
 where {\sl options} is one of the following:
@@ -191,7 +193,7 @@ which can be used to produce an annotated bibliography.
 \begin {figure}
 {\small
 \begin{verbatim}
-\documentstyle [PhD] {uclathes}
+\documentclass [PhD] {uclathes}
 \input {mymacros}                         % personal LaTeX macros
 \input {prelim}                           % preliminary page info
 \begin {document}
@@ -743,12 +745,12 @@ manuscripts with one-and-a-half spacing
 under certain conditions.
 In order to produce one-and-a-half spacing,
 add a comma and the word \verb+single+
-to the \verb+\documentstyle+ line, thusly:
+to the \verb+\documentclass+ line, thusly:
 
 \begin {center}
-\verb+\documentstyle [PhD,single] {uclathes}+ \\
+\verb+\documentclass [PhD,single] {uclathes}+ \\
 {\em or} \\
-\verb+\documentstyle [MS,single] {uclathes}+
+\verb+\documentclass [MS,single] {uclathes}+
 \end {center}
 
 The \verb+single+ option will not affect the spacing
@@ -789,6 +791,39 @@ the \tdadvisor\ will allow you to file.
 
 \end {itemize}
 
+\section{Formatting Your Thesis In Two Ways}
+
+\MaintainNote{This topic is new, which explains why it's 
+	not as carefully documented or implemented as Rich Wales'
+	code.  My apologies, but I wanted to graduate.
+	Also, the ``I'' in this section refers to me,
+	not Rich.   ---John.}
+
+One of the virtues of \LaTeX{} is that it's mostly a markup
+  language---the user indicates what things are, rather than
+  explicitly how they should be rendered.
+I took advantage of this capability to format my thesis two different
+  ways,  an official ``submission'' version and a working version for
+  me, my committee, and a technical report.
+I did this because the double-spaced, single column format
+  \emph{required} by the thesis committee was designed for typewritten
+  theses of 20 years ago rather than 
+  good design rules of the professional design world.\footnote{
+	What's wrong with it?  IMHO, double-spacing has nearly no place
+	in the modern world (except in very drafty documents);
+	double-spacing makes the document about 50\% longer than
+	it needs to be and it also make it difficult to fit some
+	tables on a single page.  Double-spacing is actually a saving
+	grace, though, because it makes up for the fact the the
+	lines are too wide to comfortably read.
+	}
+
+If you're interested in trying the ``two-outputs'' approach,
+  look at the \texttt{demo2} example.
+\texttt{demo2rep} and \texttt{demo2the} are font-ends that
+  format the main text in different ways.
+
+
 \section {Possible Future Developments}
 
 I am planning, in the near future, to approach the Graduate Division
@@ -822,7 +857,7 @@ In particular, if one-and-a-half line spacing becomes official,
 I will probably modify the macros to make such spacing the default.
 
 
-{\slshape  Maintainer's note:  These were Rich Wales' future developments.
+\MaintainNote{These were Rich Wales' future developments.
 I do not know the status of either, and I am not pursuing them myself.
    ---John.}
 
@@ -849,12 +884,15 @@ please get as much {\em specific\/} information as possible
 regarding what she is objecting to,
 and let me know right away.
 
-{\slshape  Maintainer's note:  I'm very interested
+\MaintainNote{I'm interested
   in hearing about objections the \tdadvisor\ has to
-  the default format provided by \verb|uclathes|.
+  the default format provided by \texttt{uclathes}.
+  Since it has been accepted for my dissertation,
+  it is correct as of 1995.
    ---John.}
 
 \end {document}
-% LocalWords:  umi uclathes microfilming snooze documentstyle ms phd annote tex
+
+% LocalWords:  umi uclathes microfilming snooze documentclass ms phd annote tex
 % LocalWords:  bibliographystyle diss Connectionless Gerla San prelim Los Berne
-% LocalWords:  MADHOUS signatory signatories co de
+% LocalWords:  MADHOUS signatory signatories co de markup IMHO rep
