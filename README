@@ -1,7 +1,7 @@
 
 uclathes.tar
 ------------
-1995/05/12, release 1.0 beta
+1996/01/12, release 1.1
 
 
 WHAT IS UCLATHES?
@@ -38,6 +38,15 @@ Enclosed in this package are the following files:
     demo.tex, demo.ps
 	The "demo thesis" described in thesdoc.tex.
 
+    demo2big.tex, demo2mac.tex, demo2rep.tex, demo2the.tex,
+		demo2ti.tex, demo2rep.ps, demo2the.ps
+	Another demonstration thesis.  This one can be formatted
+	two ways, as a uclathes or as a report (latex demo2the
+	and demo2rep, respectively)
+
+    Makefile
+	Automates TeX'ing documents.
+
     README
 	The file you are now reading.
 
@@ -64,7 +73,7 @@ WHERE TO GET UCLATHES
 ---------------------
 
 The most recent version of this package can be found at
-<URL:http://www.cs.ucla.edu/ficus-members/johnh/uclathes.html>.
+<URL:http://www.isi.edu/~johnh/SOFTWARE/uclathes.html>.
 
 
 ISPELL GOBBLYGOOK
@@ -72,6 +81,22 @@ ISPELL GOBBLYGOOK
 
  LocalWords:  uclathes Dorab Patel Eduardo Krell cls uclath clo uclathti bst ps
  LocalWords:  BibTeX thesdoc tex README vesion URL http www html
+
+
+KNOWN PROBLEMS
+--------------
+
+1.  \bf doesn't work, I get the error:
+	! Undefined control sequence.
+	l.214 \item{\bf
+	               {Air Interface:}}
+
+You're running LaTeX2e, and \bf isn't enabled by default.  You should
+choose if you want new or old semantics and put \usepackage{newlfont}
+or \usepackage{oldlfont} in your document.
+
+I purposely did not include one of these packages in uclathes.cls to
+encourage people to convert to the new macros.
 
 
 WHAT TO DO ABOUT BUGS
@@ -83,11 +108,24 @@ and I will update it accordingly.
 
 The uclathes package is for LaTeX2e.  If you're running LaTeX 2.09,
 you should use the package "thesis.tar" (also available from
-<URL:http://www.cs.ucla.edu/ficus-members/johnh/uclathes.html>) instead.
+<URL:http://www.isi.edu/~johnh/uclathes.html>) instead.
 
-Finally, if you successfully prepare your thesis with uclathes, please
-send me some e-mail to let me know that my work was not in vain.
 
-  ---John Heidemann, 11 May 1995
-     johnh@ficus.cs.ucla.edu
+UCLATHES NEEDS NEW MAINTAINER
+-----------------------------
+
+I've graduated and left UCLA so I'm looking for a new maintainer of
+uclathes.  You could be the one!  Send me mail if you're interested.
+
+
+REPLY-WARE
+----------
+
+Uclathes is distributed as reply-ware.  If you get it and use it and
+graduate, you're strongly encouraged to send me some e-mail to let me
+know that my work was not in vain.
+
+
+  ---John Heidemann, 12 Jan 1996
+     johnh@isi.edu
 
