@@ -1,0 +1,158 @@
+
+%
+% Title pages of the thing
+% Copyright (C) 1995 by John Heidemann, <johnh@isi.edu>.
+%
+
+
+
+\title{\textbf{Stackable Design of File Systems}}
+\author{John~Shelby Heidemann}
+
+
+\department{Computer Science}
+\degreemonth{September}
+\degreeyear{1995}
+
+\chair{Gerald~J.~Popek}
+\chair{D.~Stott Parker}
+\member{Richard~Muntz}
+\member{Rajive~L.~Bagrodia}
+\member{Kirby~A.~Baker}
+
+\dedication{\textsl{Are you dedicated?}}
+
+\acknowledgments{
+Ack!  P'tui.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% vita
+%
+\vitaitem{1968}{Born, Syracuse, New York, USA.}
+\vitaitem{etc.}{etc.}
+\vitaitem{1995}{Graduated, UCLA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% publications
+%
+
+\publication{
+	Richard~G.\ Guy, John~S.\ Heidemann, Wai Mak, Thomas~W.\ Page,~Jr.,\ 
+	  Gerald~J.\ Popek, and Dieter Rothmeier.
+	Implementation of the Ficus
+	  replicated file system.
+	In \emph{USENIX Conference Proceedings}, pages
+	  63--71.
+	USENIX, June 1990.
+}
+
+\publication{
+	etc.
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\include{abstract}
+
+%
+% I built a custom title page to do what I want.  So sue me.
+% NEEDSWORK:  I had to copy some stuff from uclathti.sty.
+%
+\makeatletter
+  \newcommand{\CustomTitlePage}{
+    \begin{titlepage}
+      \ColumnSave
+      \vspace*{1.5in}   % a hacky way to center.  TeX didn't like \vfill.
+      \begin{center}
+  
+      {\bfseries\huge \@title} \\
+      \vskip 48pt plus0pt minus18pt
+  
+      {\large \@author} \\
+      \vskip 12pt plus0pt minus3pt
+      {\large University of California, Los Angeles} \\
+      \vskip 6pt plus0pt minus2pt
+      {\large \@degreemonth, \@degreeyear} \\
+      \vskip 48pt plus0pt minus18pt
+  
+      \normalsize A \@thesisname\
+      submitted in partial satisfaction \\
+      of the requirements for the degree \\
+      \@degreename\if@department\ in \@department \fi\\
+      \vskip 24pt plus0pt minus6pt
+
+      \normalsize
+	UCLA Computer Science Department \\
+	Technical Report UCLA-CSD-950032 \\
+      \vskip 24pt plus0pt minus6pt
+
+      \textbf{Thesis committee:} \\
+      \ifnum\c@chairs<1
+        \typeout{No committee chair.}
+      \else\ifnum\c@chairs<2
+        \@chairA, chair \\
+      \else\ifnum\c@chairs<3
+        \@chairA, co-chair \\
+        \@chairB, co-chair \\
+      \else\ifnum\c@chairs<4
+        \@chairA, co-chair \\
+        \@chairB, co-chair \\
+        \@chairC, co-chair \\
+      \fi\fi\fi\fi
+      \ifnum\c@members<1 \typeout{No non-chair committee members.}\fi
+      \ifnum\c@members>0 \@memberA \\ \fi
+      \ifnum\c@members>1 \@memberB \\ \fi
+      \ifnum\c@members>2 \@memberC \\ \fi
+      \ifnum\c@members>3 \@memberD \\ \fi
+      \ifnum\c@members>4 \@memberE \\ \fi
+      \ifnum\c@members>5 \@memberF \\ \fi
+
+      \end{center}
+    \end{titlepage}
+  }
+
+  \newcommand{\CustomAcknowledgePage}{
+  \chapter*{Acknowledgments}
+
+  \@acknowledgments
+  }
+\makeatother
+
+\ifissubmit
+  \makeintropages
+\else
+  \makeatletter
+    \pagenumbering{roman}
+    \CustomTitlePage
+    \@makecopyrightpage
+    \@makededication
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    \cleardoublepage
+    \@makeabstractpage{1.0}
+    \CustomAcknowledgePage
+%    \@makevitapage
+
+    \cleardoublepage
+    \pagestyle{headings}
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+  \makeatother
+\fi
+
+
+% LocalWords:  Stott Muntz Ted Yu Wu Michial Gunter Stovall Salomone Louie Qian
+% LocalWords:  Qin Weidner McKusick Pendry Minshall kitrace Ousterhout CSD ftp
+% LocalWords:  Administrativia csd ps HyperCard Yarvis Alexy Rudenko pt Los co
+% LocalWords:  degreemonth degreeyear thesisname degreename chairA chairB roman
+% LocalWords:  chairC memberA memberB memberC memberD memberE memberF arabic
+% LocalWords:  makecopyrightpage makededication makeabstractpage Monique http
+% LocalWords:  Bennarosh www html
