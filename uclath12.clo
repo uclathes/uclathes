@@ -11,7 +11,7 @@
 
 \lineskip 1pt            % \lineskip is 1pt for all font sizes.
 \normallineskip 1pt
-\newcommand\baselinestretch{\@spacing}  % single or double spacing
+\renewcommand\baselinestretch{\@spacing}  % single or double spacing
 
 % Each size-changing command \SIZE executes the command
 %        \@setsize\SIZE{BASELINESKIP}\FONTSIZE\@FONTSIZE
