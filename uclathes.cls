@@ -1,9 +1,20 @@
-% UCLA THESIS/DISSERTATION STYLE -- for LaTeX version 2.09
+%
+% UCLA THESIS/DISSERTATION CLASS -- for LaTeX version 2e
+%	(C) Copyright 1995 by John Heidemann.
+% Taken from UCLA THESIS/DISSERTATION CLASS (version 0.94 BETA, 5/23/91)
 %	(C) Copyright 1988 Richard B. Wales.  All Rights Reserved.
+%	by Richard B. Wales.
 % Taken from DISSERTATION style (1/10/86)
 %	by Dorab Patel and Eduardo Krell
 % Taken from REPORT style
 %	[Copyright (C) 1985 by Leslie Lamport]
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Please send comments about this style to:
+% John Heidemann <johnh@ficus.cs.ucla.edu>.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % User-visible options and commands special in this style:
 %
@@ -109,9 +120,31 @@
 %
 %         \makeintropages
 %             Generate the introductory pages in the proper sequence.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Notes on the LaTeX2e port:
+%
+%  I have done a quick port of Rich Wales' "thesis" LaTeX 2.09
+%  document style to LaTeX2e.  The major changes were in option
+%  handling and font selection.  Additionally, I renamed the files
+%  to fit within DOS 8.3 constraints (even though I neither use
+%  nor advocate DOS).
+%      -johnh
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\typeout{Document Style 'thesis', version 0.94 BETA, 5/23/91.}
-\typeout{Bugs to wales@CS.UCLA.EDU}
+%%%
+% Version checking.
+%%%
+\NeedsTeXFormat{LaTeX2e}
+\def\uclathesversion{1.0}
+\def\uclathesdate{1995/05/11}
+\ProvidesClass{uclathes}[\uclathesdate, \uclathesversion]
+\typeout{LaTeX2e port copyright (C) 1995 by John Heidemann.}
+\typeout{Copyright (C) 1988 by Richard B. Wales, copyright (C) 1985 by Leslie Lamport.}
+\typeout{Please send bug reports and graduation notices to <johnh@ficus.cs.ucla.edu>.}
+
 
 % The following commands set the thesis/dissertation title and author,
 % as well as the type size for printing the title.
@@ -149,10 +182,10 @@
     \def\@degreename{#1}
    }
 \dissertation{Doctor of Philosophy}	% default
-\@namedef{ds@PhD}{}			% default -- nothing more to do
-\@namedef{ds@MA}{\thesis{Master of Arts}}
-\@namedef{ds@MS}{\thesis{Master of Science}}
-\@namedef{ds@EdD}{\dissertation{Doctor of Education}\@departmentfalse}
+\DeclareOption{PhD}{}			% default -- nothing more to do
+\DeclareOption{MA}{\thesis{Master of Arts}}
+\DeclareOption{MS}{\thesis{Master of Science}}
+\DeclareOption{EdD}{\dissertation{Doctor of Education}\@departmentfalse}
 
 % The following commands will process the "single" or "double" option.
 % (The default is "double".)  This controls inter-line spacing.  Note
@@ -163,11 +196,11 @@
 \def\@singlespacing{1.0}
 \def\@doublespacing{1.544}	  % see above for explanation of value
 \let\@spacing=\@doublespacing
-% \@namedef{ds@single}{\let\@spacing=\@singlespacing}
-\@namedef{ds@single}{\typeout{*** Sorry, single spacing disabled ***}}
-\@namedef{ds@double}{\let\@spacing=\@doublespacing}
+% \DeclareOption{single}{\typeout{*** Sorry, single spacing disabled ***}}
+\DeclareOption{single}{\let\@spacing=\@singlespacing}
+\DeclareOption{double}{\let\@spacing=\@doublespacing}
 
-\def\ds@draft{\overfullrule 5pt}  % Causes overfull hboxes to be marked.
+\DeclareOption{draft}{\overfullrule 5pt}  % Causes overfull hboxes to be marked.
 
 % The following commands set the year in which the degree will be
 % awarded, as well as the year of copyright.
@@ -180,19 +213,15 @@
    {\def\@degreeyear{#1}\if@cyrset\else\def\@copyrightyear{#1}\fi}
 \newcommand{\copyrightyear}[1]{\def\@copyrightyear{#1}\@cyrsettrue}
 
-% The \@options command causes the execution of every command \ds@FOO 
-% which is defined and for which the user typed the FOO option in his
-% \documentstyle command.  For every option BAR he typed for which
-% \ds@BAR is not defined, the file BAR.sty will be read after the
-% present (main) .STY file is executed.
+% The \ProcessOptions command does the options.
 
-\@options
+\ProcessOptions
 
-% The "thesis12.sty" file defines things that depend on the type size.
+% The "uclath12.sty" file defines things that depend on the type size.
 % In order to meet the UCLA requirements for minimum size of print in a
 % thesis or dissertation, only one size (12-point) is supported.
 
-\input thesis12.sty\relax
+\input{uclath12.clo}\relax
 
 
 %    ****************************************
@@ -228,7 +257,7 @@
 % itemization levels.
 
 \def\labelitemi{$\bullet$}
-\def\labelitemii{\bf --}
+\def\labelitemii{\bfseries --}
 \def\labelitemiii{$\ast$}
 \def\labelitemiv{$\cdot$}
 
@@ -262,7 +291,7 @@
 %  To change the formatting of the label, you must redefine 
 %  \descriptionlabel.  
 
-\def\descriptionlabel#1{\hspace\labelsep \bf #1}
+\def\descriptionlabel#1{\hspace\labelsep \bfseries #1}
 \def\description{\list{}{\labelwidth\z@ \itemindent-\leftmargin
        \let\makelabel\descriptionlabel}}
 
@@ -283,9 +312,9 @@
 % Except \@opargbegintheorem is executed when an optional argument is
 % given.  Cf. LATEX.TEX.
 %
-% \def\@begintheorem#1#2{\it \trivlist \item[\hskip \labelsep{\bf #1\ #2}]}
+% \def\@begintheorem#1#2{\it \trivlist \item[\hskip \labelsep{\bfseries #1\ #2}]}
 % \def\@opargbegintheorem#1#2#3{\it \trivlist
-%       \item[\hskip \labelsep{\bf #1\ #2\ (#3)}]}
+%       \item[\hskip \labelsep{\bfseries #1\ #2\ (#3)}]}
 % \def\@endtheorem{\endtrivlist}
 
 
@@ -428,7 +457,7 @@
    \@tempdima 3em         % width of box holding part number, used by 
      \parindent \z@ \rightskip \@pnumwidth             %% \numberline
      \parfillskip -\@pnumwidth   
-     {\large \bf          % set line in \large boldface
+     {\large \bfseries          % set line in \large boldface
      \leavevmode          % TeX command to enter horizontal mode.       
      #1\hfil \hbox to\@pnumwidth{\hss #2}}\par
      \nobreak             % Never break after part entry
@@ -440,7 +469,7 @@
    \begingroup
      \parindent \z@ \rightskip \@pnumwidth 
      \parfillskip -\@pnumwidth   
-     \bf                  % Boldface.
+     \bfseries                  % Boldface.
      \leavevmode          % TeX command to enter horizontal mode.       
     #1\leaders\hbox{$\m@th \mkern \@dotsep mu.\mkern \@dotsep mu$}\hfill 
      \hbox to\@pnumwidth{\hfil #2}\par
@@ -724,14 +753,14 @@
 %
 
 \def\ps@headings{\def\@oddfoot{}\def\@evenfoot{}%     No feet.
-\def\@oddhead{\hbox {}\sl \rightmark \hfil \rm\thepage}% Heading.
+\def\@oddhead{\hbox {}\slshape \rightmark \hfil \rm\thepage}% Heading.
 \def\chaptermark##1{\markright {\uppercase{\ifnum \c@secnumdepth >\m@ne
   \@chapapp\ \thechapter. \ \fi ##1}}}}
 
 % Definition of 'myheadings' page style.  
 %
-\def\ps@myheadings{\def\@oddhead{\hbox{}\sl\rightmark \hfil \rm\thepage}%
-\def\@oddfoot{}\def\@evenhead{\rm \thepage\hfil\sl\leftmark\hbox {}}%
+\def\ps@myheadings{\def\@oddhead{\hbox{}\slshape\rightmark \hfil \rm\thepage}%
+\def\@oddfoot{}\def\@evenhead{\rm \thepage\hfil\slshape\leftmark\hbox {}}%
 \def\@evenfoot{}\def\sectionmark##1{}\def\subsectionmark##1{}}
 
 
@@ -800,4 +829,4 @@
 \if@twoside\else\raggedbottom\fi % Ragged bottom unless twoside option.
 
 % Generate thesis preliminary pages
-\input {thesistitle.sty}
+\input{uclathti.clo}
