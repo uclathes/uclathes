@@ -69,6 +69,10 @@
 %             department name is officially unnecessary (such as when an
 %             "EdD" or customized degree title is specified).
 %
+%         \degreemonth{X}
+%             Set the month in which the degree will be awarded to "X".
+%             Default is the current month.
+%
 %         \degreeyear{X}
 %             Set the year in which the degree will be awarded to "X".
 %             Default is the current year.
