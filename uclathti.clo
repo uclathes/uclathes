@@ -172,14 +172,14 @@
       \ifnum\c@members>0 \@signatureline{\@memberA}
          \else\typeout{No non-chair committee members.}\fi
       \ifnum\c@chairs>2
-         \@signatureline{\@chairC, committee co-chair}
-         \@signatureline{\@chairB, committee co-chair}
-         \@signatureline{\@chairA, committee co-chair}
+         \@signatureline{\@chairC, Committee Co-chair}
+         \@signatureline{\@chairB, Committee Co-chair}
+         \@signatureline{\@chairA, Committee Co-chair}
       \else\ifnum\c@chairs>1
-         \@signatureline{\@chairB, committee co-chair}
-         \@signatureline{\@chairA, committee co-chair}
+         \@signatureline{\@chairB, Committee Co-chair}
+         \@signatureline{\@chairA, Committee Co-chair}
       \else\ifnum\c@chairs>0
-         \@signatureline{\@chairA, committee chair}
+         \@signatureline{\@chairA, Committee Chair}
       \else\typeout{No committee chair.}
       \fi\fi\fi
    \end {flushright}
@@ -462,14 +462,14 @@
 	 \@degreename\if@department\ in \@department \fi\\
          University of California, Los Angeles, \@degreeyear \\
          \ifnum\c@chairs>2
-            Professor \@chairA, co-chair \\
-            Professor \@chairB, co-chair \\
-            Professor \@chairC, co-chair \\
+            Professor \@chairA, Co-chair \\
+            Professor \@chairB, Co-chair \\
+            Professor \@chairC, Co-chair \\
          \else\ifnum\c@chairs>1
-            Professor \@chairA, co-chair \\
-            Professor \@chairB, co-chair \\
+            Professor \@chairA, Co-chair \\
+            Professor \@chairB, Co-chair \\
          \else\ifnum\c@chairs>0
-            Professor \@chairA, chair \\
+            Professor \@chairA, Chair \\
          \else\typeout{No committee chair.}
          \fi\fi\fi
       \end{center}
