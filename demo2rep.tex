@@ -1,0 +1,101 @@
+
+%
+% a front end for the draft
+%
+% This version is actually what I gave to my committee
+% and published as a tech report.
+% IMHO, the report style is much better for human consumption
+% than the required thesis style.
+%    -johnh, 12-Jan-96
+%
+
+\newif\ifissubmit
+\issubmitfalse
+
+\newif\ifisdraft
+\isdrafttrue
+
+% \documentclass[PhD,single,twoside]{uclathes}
+\documentclass[twocolumn,twoside]{book}
+\usepackage{times}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% format hacking:
+%
+
+\makeatletter
+
+  %
+  % get the thesis title page format
+  %
+  \input{uclathma.clo}
+  \input{uclathti.clo}
+
+  %
+  % sectiion titles
+  %
+  \renewcommand\section{\@startsection {section}{1}{\z@}%
+                                     {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                     {2.3ex \@plus.2ex}%
+                                     {\reset@font\Large\bfseries\nohyphenation}}
+  \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                       {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                       {1.5ex \@plus .2ex}%
+                                       {\reset@font\large\bfseries\nohyphenation}}
+  \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                       {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                       {1.5ex \@plus .2ex}%
+                                       {\reset@font\normalsize\bfseries\nohyphenation}}
+  \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                      {3.25ex \@plus1ex \@minus.2ex}%
+                                      {-1em}%
+                                      {\reset@font\normalsize\bfseries\nohyphenation}}
+  \renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                         {3.25ex \@plus1ex \@minus .2ex}%
+                                         {-1em}%
+                                        {\reset@font\normalsize\bfseries\nohyphenation}}
+
+  %
+  % Steal the bibliography from uclathes so it's a real chapter.
+  %
+  \def\thebibliography#1{\chapter*{References\markboth
+    {REFERENCES}{REFERENCES}}
+    \addcontentsline{toc}{chapter}{References}
+    \renewcommand\baselinestretch{1}
+    \@normalsize
+    \list{[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+      \advance\leftmargin\labelsep
+      \usecounter{enumi}}
+      \def\newblock{\hskip .11em plus .33em minus -.07em}
+      \sloppy
+      \sfcode`\.=1000\relax}
+  
+  \def\endthebibliography{\renewcommand\baselinestretch{\@spacing}\@normalsize\endlist}
+  
+  %
+  % margin hacking
+  %
+  %
+  % First get rid of driver margins.
+  \setlength{\voffset}{-1in}
+  \setlength{\hoffset}{-1in}
+  % Set column width and gutter
+  \setlength{\textheight}{8.5in}
+  % Top and bottom margins.
+  \setlength{\topmargin}{0.75in}
+  \setlength{\headheight}{12\p@}
+  \setlength{\headsep}{0.25in}
+  \setlength{\footskip}{0.35in}
+  % Left and right margins.
+  \setlength{\evensidemargin}{0.80in}
+  \setlength{\oddsidemargin}{1.25in}
+  % width
+  \setlength{\textwidth}{6.45in}
+  \setlength{\columnsep}{0.25in}
+
+
+\makeatother
+
+
+\input{demo2big.tex}
