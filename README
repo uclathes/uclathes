@@ -20,6 +20,19 @@ earlier version of this style package for LaTeX 2.09.  Degrees
 were granted, so don't lose all hope.
 
 
+WHAT IS NEW WITH UCLATHES 1.1?
+------------------------------
+
+I slightly shrunk page size to clearly conform to the requirements
+(problem reported by David Gast).
+
+An example showing dual-mode formatting is present in demo2*.tex.
+My dissertation is formatted either with uclathes.cls (the submission
+version) and with report.cls (for my committee and a technical report)
+because IMHO the thesis requirements are not optimal.  See the manual
+for more details how to dual-format your document.
+
+
 WHAT IS IN UCLATHES?
 --------------------
 
@@ -118,6 +131,12 @@ I've graduated and left UCLA so I'm looking for a new maintainer of
 uclathes.  You could be the one!  Send me mail if you're interested.
 
 
+ISPELL FOOLISHNESS
+------------------
+
+ LocalWords:  TeX'ing GOBBLYGOOK LocalWords bf
+
+
 REPLY-WARE
 ----------
 
@@ -129,4 +148,3 @@ know that my work was not in vain.
   ---John Heidemann, 12 Jan 1996
      johnh@isi.edu
 
- LocalWords:  TeX'ing GOBBLYGOOK LocalWords bf
