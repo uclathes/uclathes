@@ -1,73 +1,92 @@
-*** BETA TEST VERSION of "thesis" style files for LaTeX and BibTeX ***
 
-Thank you for agreeing to test out this material.  Please remember that
-it MIGHT have bugs, and that any bugs you find MUST be reported PROMPTLY
-to me (Rich Wales, wales@CS.UCLA.EDU).
+uclathes.tar
+------------
+
+
+WHAT IS UCLATHES?
+-----------------
+
+This package is a beta test version of a LaTeX2e document
+style to format UCLA dissertations and theses.
+This style is based on work from Leslie Lamport,
+Dorab Patel, Eduardo Krell, Richard B. Wales, and John Heidemann.
+
+This version should be considered ``beta test'' because
+no thesis formatted with it has yet been submitted to the Thesis
+and Dissertations Advisor for approval.  Before you throw it away,
+several theses and dissertations have been approved based on an
+earlier version of this style package for LaTeX 2.09.  Degrees
+were granted, so don't lose all hope.
+
+
+WHAT IS IN UCLATHES?
+--------------------
 
 Enclosed in this package are the following files:
 
-    thesis.sty, thesis12.sty, thesistitle.sty
-	These three files implement the LaTeX "thesis" document style.
 
-    thesis.bst
-	This file implements the BibTeX "thesis" bibliography style.
+    uclathes.cls, uclath12.clo, uclathti.clo
+	These three files implement the LaTeX2e "uclathes" document class.
+
+    uclathes.bst
+	This file implements the BibTeX "uclathes" bibliography style.
 
     thesdoc.tex, thesdoc.ps
-	A document describing the "thesis" style material.
+	A document describing the "uclathes" style material.
+
+    demo.tex, demo.ps
+	The "demo thesis" described in thesdoc.tex.
 
     README
 	The file you are now reading.
 
-Make sure all four "thesis.*" files are copied into the same directory
-that you will be running LaTeX in (i.e., the directory where the LaTeX
-source files for your thesis or dissertation will be).
 
-Print the "thesdoc.ps" file (via the command "lpr -Pxxx thesdoc.ps",
-where "xxx" should be replaced by a valid printer name), and read it
-VERY carefully before proceeding.
+HOW TO INSTALL UCLATHES
+-----------------------
 
-This is a BETA TEST RELEASE.  That is, I am pretty sure these style
-files work, and that the output they generate will be acceptable for
-filing -- but I realize there still might be some problems, which I
-want to find and fix as quickly as possible.  By agreeing to be a BETA
-TESTER of this material, you accept the possibility that there might
-be bugs, and you agree to report these to me as quickly and in as much
-detail as possible, so that they can be fixed.
+The simplest way to install uclathes is to copy *.cls, *.clo, and *.bst
+into the directory where you run LaTeX.
 
-While I want to get the bugs fixed, and will attempt to do so as fast
-as I can, you must understand that I can't make any ironclad guarantees
-that a given bug will be fixed within a given period of time.  By using
-these style files, therefore, you accept that I (Rich Wales) will NOT be
-responsible for damages to you arising out of the use of this material.
-In particular, I will NOT be liable for damages if a bug or other prob-
-lem with these style files causes you to miss your filing deadline.  If
-you are not willing to accept this disclaimer of liability, then DO NOT
-USE THIS MATERIAL!!
+Alternatively, you can copy these files into wherever LaTeX looks
+for its inputs.
 
-If a problem arises, please send me as much information as possible, as
-soon as possible.
 
-(1) If the LaTeX style files make LaTeX generate improper output, or no
-    output at all, please send me a copy of the LaTeX log file (the file
-    with a name ending in ".log").  Be prepared to send me a copy of all
-    your LaTeX source files, and/or to show me a copy of whatever print-
-    out you got, if I ask for it.
+WHERE'S THE REAL DOCUMENTATION
+------------------------------
 
-(2) If the archivist (Theses and Dissertations Advisor) refuses to take
-    your manuscript for filing, please find out (in as much detail as
-    possible) exactly what she is objecting to and what she wants you
-    to do instead.  Then send me mail describing the problem, and be
-    prepared to show me the relevant portion of your printout if I ask
-    for it.  Please DO NOT get into an argument with the archivist;
-    just get as much specific info as possible regarding her objections,
-    and if it seems she is being unreasonable on some point, let the CS
-    Department be the one to argue with her or try to go over her head.
+Rich Wales has prepared a good manual for uclathes.
+Read thesdoc.ps (or format and read thesdoc.tex) before
+proceeding.
 
-Any bug reports should be sent to me via e-mail (wales@cs.ucla.edu; or,
-from the CS Department computers, simply "wales").  If you need to show
-me something or discuss a problem with me in person, my office is 3409
-Boelter Hall; I'm usually around all afternoon every weekday.
 
-Good luck!
+WHERE TO GET UCLATHES
+---------------------
 
-						Rich Wales
+The most recent version of this package can be found at
+<URL:http://www.cs.ucla.edu/ficus-members/johnh/latex.html>.
+
+
+ISPELL GOBBLYGOOK
+-----------------
+
+ LocalWords:  uclathes Dorab Patel Eduardo Krell cls uclath clo uclathti bst ps
+ LocalWords:  BibTeX thesdoc tex README vesion URL http www html
+
+
+WHAT TO DO ABOUT BUGS
+---------------------
+
+If a thesis formatted with uclathes is rejected by the
+Theses and Dissertations Advisor, please let me know
+and I will update it accordingly.
+
+The uclathes package is for LaTeX2e.  If you're running LaTeX 2.09,
+you should use the package "thesis.tar" (also available from
+<URL:http://www.cs.ucla.edu/ficus-members/johnh/latex.html>) instead.
+
+Finally, if you successfully prepare your thesis with uclathes, please
+send me some e-mail to let me know that my work was not in vain.
+
+  ---John Heidemann, 11 May 1995
+     johnh@ficus.cs.ucla.edu
+
