@@ -6,10 +6,9 @@
 
 FILES=README \
 	demo.tex demo.dvi demo.ps \
-	demo2big.tex demo2mac.tex demo2rep.tex demo2the.tex demo2ti.tex demo2rep.ps demo2the.ps \
-	demo.tex demo.ps \
+	demo2big.tex demo2mac.tex demo2rep.tex demo2the.tex demo2int.tex demo2ti.tex demo2rep.ps demo2the.ps \
 	thesdoc.tex thesdoc.ps \
-	uclathes.cls uclath12.clo uclathti.clo \
+	uclathes.cls uclath12.clo uclathti.clo uclathma.clo \
 	uclathes.bst Makefile
 
 all:  latex dvips
