@@ -21,7 +21,7 @@
   % Spacing has already been set (in uclathes.cls).
 \else
   % Spacing was not set, set it here as if we were uclathes.cls.
-  \typeout{Spacing not set.}
+  % \typeout{Spacing not set.}
   \def\@singlespacing{1.0}
   \def\@doublespacing{1.544}	  % see above for explanation of value
   \let\@spacing=\@singlespacing
@@ -34,7 +34,6 @@
 \newcommand{\ColumnSave}{
   \if@twocolumn
     \@ColumnSaveValuetrue
-    \typeout{Twocol-saved.}
   \else
     \@ColumnSaveValuefalse
   \fi
@@ -44,9 +43,11 @@
 \newcommand{\ColumnSaveHeading}[1]{
   \if@twocolumn
     \@ColumnSaveValuetrue
+    \pagebreak
     \twocolumn[#1]
   \else
     \@ColumnSaveValuefalse
+    \pagebreak
     #1
   \fi
 }
@@ -155,9 +156,9 @@
 }
 
 \newcommand\@makesignaturepage{
+   \ColumnSave
    \pagenumbering{roman}
    \setcounter{page}{2}
-   \ColumnSave
    \noindent
    \renewcommand\baselinestretch{\@doublespacing}\@normalsize
    \normalsize \normalfont The \@thesisname\ of \@author\ is approved.
@@ -171,14 +172,14 @@
       \ifnum\c@members>0 \@signatureline{\@memberA}
          \else\typeout{No non-chair committee members.}\fi
       \ifnum\c@chairs>2
-         \@signatureline{\@chairC, Committee Co-Chair}
-         \@signatureline{\@chairB, Committee Co-Chair}
-         \@signatureline{\@chairA, Committee Co-Chair}
+         \@signatureline{\@chairC, committee co-chair}
+         \@signatureline{\@chairB, committee co-chair}
+         \@signatureline{\@chairA, committee co-chair}
       \else\ifnum\c@chairs>1
-         \@signatureline{\@chairB, Committee Co-Chair}
-         \@signatureline{\@chairA, Committee Co-Chair}
+         \@signatureline{\@chairB, committee co-chair}
+         \@signatureline{\@chairA, committee co-chair}
       \else\ifnum\c@chairs>0
-         \@signatureline{\@chairA, Committee Chair}
+         \@signatureline{\@chairA, committee chair}
       \else\typeout{No committee chair.}
       \fi\fi\fi
    \end {flushright}
@@ -226,9 +227,11 @@
 \newcommand\acknowledgments[1]{\@ackstrue\def\@acknowledgments{#1}}
 
 \newcommand\@makeacknowledgmentsheading{
-   \centering
-   \textsc{\large Acknowledgments}
-   \vskip 12pt
+  {
+    \centering
+    \textsc{\large Acknowledgments}
+    \vskip 12pt
+  }
 }
 
 
@@ -346,6 +349,8 @@
 \newcommand\@printpubitem[1]{\par \noindent #1}
 
 \newcommand\@makevitapage{
+   % Save the old stretch.
+   \let\OldArrayStretch=\arraystretch
    \renewcommand\arraystretch{1.67}
    \ifnum\c@vitaitems>0
       \ColumnSave
@@ -426,6 +431,7 @@
       }
       \ColumnRestore
    \fi\fi
+   \renewcommand\arraystretch{\OldArrayStretch}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -438,7 +444,12 @@
 \def\@abstract{}
 \newcommand\abstract[1]{\@abstracttrue\def\@abstract{#1}}
 
-\newcommand\@makeabstractpage{
+%
+% one argument: the baselinestretch
+% The RFTADP requires doublespacing, but in techreports
+% you may wish something less.
+%
+\newcommand{\@makeabstractpage}[1]{
    \if@abstract
       \ColumnSave
       \par\pagestyle{plain}
@@ -451,21 +462,37 @@
 	 \@degreename\if@department\ in \@department \fi\\
          University of California, Los Angeles, \@degreeyear \\
          \ifnum\c@chairs>2
-            Professor \@chairA, Co-Chair \\
-            Professor \@chairB, Co-Chair \\
-            Professor \@chairC, Co-Chair \\
+            Professor \@chairA, co-chair \\
+            Professor \@chairB, co-chair \\
+            Professor \@chairC, co-chair \\
          \else\ifnum\c@chairs>1
-            Professor \@chairA, Co-Chair \\
-            Professor \@chairB, Co-Chair \\
+            Professor \@chairA, co-chair \\
+            Professor \@chairB, co-chair \\
          \else\ifnum\c@chairs>0
-            Professor \@chairA, Chair \\
+            Professor \@chairA, chair \\
          \else\typeout{No committee chair.}
          \fi\fi\fi
       \end{center}
       \ifx\@spacing\@doublespacing\vskip 12pt\else\vskip 24pt\fi
-      \renewcommand\baselinestretch{\@doublespacing}\@normalsize
-      \@abstract
-      \newpage \pagenumbering{arabic}
+      \renewcommand\baselinestretch{#1}\@normalsize
+      %
+      % Set up spacing.
+      % If it's single spacing, indent the margins.
+      % If double spacing is required than things are already
+      % ugly enough (and we loose enough space) that we may
+      % as well use the whole \textwidth.
+      %
+      \ifthenelse{\equal{#1}{\@stdsinglespacing}}{
+	\begin{center}
+	\begin{minipage}{4.75in}
+	\setlength{\parindent}{1.5em}
+	\@abstract
+        \end{minipage}
+	\end{center}
+      }{
+	\@abstract
+      }
+
       \renewcommand\baselinestretch{\@spacing}\@normalsize
       \ColumnRestore
   \else
@@ -480,21 +507,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand\makeintropages{
-   \@maketitlepage
-   % If we're printing two sided,
-   % insert a blank page for the back of the title page.
-   % NOTE:  This extra page makes the output non-conforming
-   % to the RFTADP, unless you throw it away.
-   \if@twoside
-     \newpage   % the back side of the title page
-   \fi
-   \@makecopyrightpage
-   \@makesignaturepage
-   \@makededication
-   \tableofcontents
-   \listoffigures
-   \listoftables
-   \@makeacknowledgments
-   \@makevitapage
-   \@makeabstractpage
+  \@maketitlepage
+  % If we're printing two sided,
+  % insert a blank page for the back of the title page.
+  % NOTE:  This extra page makes the output non-conforming
+  % to the RFTADP, unless you throw it away.
+  \if@twoside
+    \typeout{Two-side detected.}    
+    \pagebreak   % the back side of the title page
+  \fi
+  \@makecopyrightpage
+  \@makesignaturepage
+  \@makededication
+  \tableofcontents
+  \listoffigures
+  \listoftables
+  \@makeacknowledgments
+  \@makevitapage
+  \@makeabstractpage{\@doublespacing}
+  \newpage \pagenumbering{arabic}
 }
