@@ -3,6 +3,10 @@
     % version 0.99a for BibTeX versions 0.99a or later,
     % LaTeX version 2.09; Copyright (C) 1985, all rights reserved.
 
+% Modifications by John Heidemann (8/95)
+    % Slanted back to italics.
+    % Boldface uses latex2e command.
+
 % Modifications by Rich Wales (3/91):
     % Added support for "annote" field (for annotated bibliography).
     % Capitalization in titles is not disturbed.
@@ -59,14 +63,14 @@ STRINGS { s t }
 FUNCTION {emphasize}
 { duplicate$ empty$
     { pop$ "" }
-    { "{\sl " swap$ * "}" * }
+    { "{\em " swap$ * "}" * }
   if$
 }
 
 FUNCTION {boldface}
 { duplicate$ empty$
     { pop$ "" }
-    { "{\bf " swap$ * "}" * }
+    { "{\bfseries " swap$ * "}" * }
   if$
 }
 
@@ -497,7 +501,7 @@ FUNCTION {format.article.crossref}
 	  warning$
 	  ""
 	}
-	{ "In {\sl " journal * "\/}" * }
+	{ "In {\em " journal * "\/}" * }
       if$
     }
     { "In " key * }
@@ -540,7 +544,7 @@ FUNCTION {format.book.crossref}
 	      crossref * warning$
 	      "" *
 	    }
-	    { "{\sl " * series * "\/}" * }
+	    { "{\em " * series * "\/}" * }
 	  if$
 	}
 	{ key * }
@@ -561,7 +565,7 @@ FUNCTION {format.incoll.inproc.crossref}
 	      crossref * warning$
 	      ""
 	    }
-	    { "In {\sl " booktitle * "\/}" * }
+	    { "In {\em " booktitle * "\/}" * }
 	  if$
 	}
 	{ "In " key * }
