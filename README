@@ -1,7 +1,7 @@
 
 uclathes.tar
 ------------
-1996/01/12, release 1.1
+1996/01/16, release 1.1
 
 
 WHAT IS UCLATHES?
@@ -80,7 +80,7 @@ ISPELL GOBBLYGOOK
 -----------------
 
  LocalWords:  uclathes Dorab Patel Eduardo Krell cls uclath clo uclathti bst ps
- LocalWords:  BibTeX thesdoc tex README vesion URL http www html
+ LocalWords:  BibTeX thesdoc tex README vesion URL http www html mac rep ti isi
 
 
 KNOWN PROBLEMS
@@ -129,3 +129,4 @@ know that my work was not in vain.
   ---John Heidemann, 12 Jan 1996
      johnh@isi.edu
 
+ LocalWords:  TeX'ing GOBBLYGOOK LocalWords bf
