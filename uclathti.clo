@@ -260,7 +260,7 @@
 \newcounter{vitaitems}
 \setcounter{vitaitems}{0}
 \newcommand\@vitadate[1]{{\parbox[t]{1.25in}{\normalfont{#1}}}}
-\newcommand\@vitatext[1]{{\parbox[t]{4.45in}{\normalfont{#1}}}}
+\newcommand\@vitatext[1]{{\parbox[t]{5.25in}{\normalfont{#1}}}}
 \newcommand\vitaitem[2]{
    \ifcase\value{vitaitems}
       \def\@vitaA{\@vitadate{#1} & \@vitatext{#2}} \or
@@ -341,7 +341,7 @@
 
 \newcommand\@printvitaitem[1]{
    \noindent
-   \begin {tabular} {@{}p{1.25in}@{}p{4.45in}@{}}
+   \begin {tabular} {@{}p{1.25in}@{}p{5.25in}@{}}
       #1
    \end {tabular}
 }
