@@ -1,0 +1,73 @@
+*** BETA TEST VERSION of "thesis" style files for LaTeX and BibTeX ***
+
+Thank you for agreeing to test out this material.  Please remember that
+it MIGHT have bugs, and that any bugs you find MUST be reported PROMPTLY
+to me (Rich Wales, wales@CS.UCLA.EDU).
+
+Enclosed in this package are the following files:
+
+    thesis.sty, thesis12.sty, thesistitle.sty
+	These three files implement the LaTeX "thesis" document style.
+
+    thesis.bst
+	This file implements the BibTeX "thesis" bibliography style.
+
+    thesdoc.tex, thesdoc.ps
+	A document describing the "thesis" style material.
+
+    README
+	The file you are now reading.
+
+Make sure all four "thesis.*" files are copied into the same directory
+that you will be running LaTeX in (i.e., the directory where the LaTeX
+source files for your thesis or dissertation will be).
+
+Print the "thesdoc.ps" file (via the command "lpr -Pxxx thesdoc.ps",
+where "xxx" should be replaced by a valid printer name), and read it
+VERY carefully before proceeding.
+
+This is a BETA TEST RELEASE.  That is, I am pretty sure these style
+files work, and that the output they generate will be acceptable for
+filing -- but I realize there still might be some problems, which I
+want to find and fix as quickly as possible.  By agreeing to be a BETA
+TESTER of this material, you accept the possibility that there might
+be bugs, and you agree to report these to me as quickly and in as much
+detail as possible, so that they can be fixed.
+
+While I want to get the bugs fixed, and will attempt to do so as fast
+as I can, you must understand that I can't make any ironclad guarantees
+that a given bug will be fixed within a given period of time.  By using
+these style files, therefore, you accept that I (Rich Wales) will NOT be
+responsible for damages to you arising out of the use of this material.
+In particular, I will NOT be liable for damages if a bug or other prob-
+lem with these style files causes you to miss your filing deadline.  If
+you are not willing to accept this disclaimer of liability, then DO NOT
+USE THIS MATERIAL!!
+
+If a problem arises, please send me as much information as possible, as
+soon as possible.
+
+(1) If the LaTeX style files make LaTeX generate improper output, or no
+    output at all, please send me a copy of the LaTeX log file (the file
+    with a name ending in ".log").  Be prepared to send me a copy of all
+    your LaTeX source files, and/or to show me a copy of whatever print-
+    out you got, if I ask for it.
+
+(2) If the archivist (Theses and Dissertations Advisor) refuses to take
+    your manuscript for filing, please find out (in as much detail as
+    possible) exactly what she is objecting to and what she wants you
+    to do instead.  Then send me mail describing the problem, and be
+    prepared to show me the relevant portion of your printout if I ask
+    for it.  Please DO NOT get into an argument with the archivist;
+    just get as much specific info as possible regarding her objections,
+    and if it seems she is being unreasonable on some point, let the CS
+    Department be the one to argue with her or try to go over her head.
+
+Any bug reports should be sent to me via e-mail (wales@cs.ucla.edu; or,
+from the CS Department computers, simply "wales").  If you need to show
+me something or discuss a problem with me in person, my office is 3409
+Boelter Hall; I'm usually around all afternoon every weekday.
+
+Good luck!
+
+						Rich Wales

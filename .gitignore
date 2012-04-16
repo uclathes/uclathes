@@ -1,0 +1,14 @@
+*.bbl
+*.aux
+*.toc
+*.ps
+*.lof
+*.dvi
+*.lot
+*.log
+old_demo.ps.gz
+*.tar.gz
+RCS-
+WALES
+LATEX209
+DISTRIBUTIONS
