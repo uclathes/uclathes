@@ -151,7 +151,7 @@
 % changed, it may be desirable to change the "\vskip" before the name.
 
 \newcommand\@signatureline[1]{
-   \rule{4in}{0.01in} \\ \vskip-10pt{#1} \\
+   \vskip-10pt{#1} \\
    \vskip 36pt plus0pt minus15pt%
 }
 
@@ -163,7 +163,7 @@
    \renewcommand\baselinestretch{\@doublespacing}\@normalsize
    \normalsize \normalfont The \@thesisname\ of \@author\ is approved.
    \vskip 72pt plus0pt minus24pt
-   \begin {flushright}
+   \begin {center}
       \ifnum\c@members>5 \@signatureline{\@memberF}\fi
       \ifnum\c@members>4 \@signatureline{\@memberE}\fi
       \ifnum\c@members>3 \@signatureline{\@memberD}\fi
@@ -182,7 +182,7 @@
          \@signatureline{\@chairA, Committee Chair}
       \else\typeout{No committee chair.}
       \fi\fi\fi
-   \end {flushright}
+   \end {center}
    \vfill
    \begin {center}
       University of California, Los Angeles \\ \@degreeyear
