@@ -20,32 +20,43 @@ tar.gz:
 	@echo "Make all before doing make tar.gz"
 	tar czvf uclathes.tar.gz $(FILES)
 
-latex: latex.demo latex.demo2rep latex.demo2the latex.thesdoc
+DVIPS=dvips
+PS2PDF=ps2pdf14
 
-dvips: dvips.demo dvips.demo2rep dvips.demo2the dvips.thesdoc
-
-latex.demo:
+latex latex.demo::
 	latex demo
 
-dvips.demo:
-	dvips demo
+ps demo.ps::
+	$(DVIPS) demo
 
-latex.demo2rep:
+pdf demo.pdf::
+	$(PS2PDF) demo.ps demo.pdf
+
+latex latex.demo2rep::
 	latex demo2rep
 
-dvips.demo2rep:
-	dvips demo2rep
+ps demo2rep.ps::
+	$(DVIPS) demo2rep
 
-latex.demo2the:
+pdf demo2rep.pdf::
+	$(PS2PDF) demo2rep.ps demo2rep.pdf
+
+latex latex.demo2the::
 	latex demo2the
 
-dvips.demo2the:
-	dvips demo2the
+ps demo2the.ps::
+	$(DVIPS) demo2the
 
-latex.thesdoc:
+pdf demo2the.pdf::
+	$(PS2PDF) demo2the.ps demo2the.pdf
+
+latex latex.thesdoc::
 	latex thesdoc
 
-dvips.thesdoc:
-	dvips thesdoc
+ps thesdoc.ps::
+	$(DVIPS) thesdoc
+
+pdf thesdoc.pdf::
+	$(PS2PDF) thesdoc.ps thesdoc.pdf
 
 

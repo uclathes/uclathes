@@ -1,7 +1,7 @@
 
 uclathes.tar
 ------------
-1996/06/10, release 1.2
+2012-04-16, release 1.3-rc1
 
 
 WHAT IS UCLATHES?
@@ -18,6 +18,16 @@ and Dissertations Advisor for approval.  Before you throw it away,
 several theses and dissertations have been approved based on an
 earlier version of this style package for LaTeX 2.09.  Degrees
 were granted, so don't lose all hope.
+
+
+WHAT IS NEW WITH UCLATHES 1.3?
+------------------------------
+
+After many years, UCLA changed the rules and moved away from paper.
+(They seem to still have the awful information-sparse double spacing,
+but maybe in 15 more years...)
+John Colby updated uclathes-1.2 from 1996 to match the new style,
+and [xxx: has confirmed it gets past the margin lady?].
 
 
 WHAT IS NEW WITH UCLATHES 1.2?
@@ -124,7 +134,7 @@ may be wrong.  (This bug occurs in demo.ps.)
 
 Work around:  always specify \degreeyear.
 
-Alternate work around:  find a real uclathes maintainer to fix the bug.
+AAlternate work around:  find a real uclathes maintainer to fix the bug.
 
 
 WHAT TO DO ABOUT BUGS
@@ -149,7 +159,8 @@ uclathes.  You could be the one!  Send me mail if you're interested.
 ISPELL FOOLISHNESS
 ------------------
 
- LocalWords:  TeX'ing GOBBLYGOOK LocalWords bf
+ LocalWords:  TeX'ing GOBBLYGOOK LocalWords bf rc LaTeX Lamport degreeyear Gast
+ LocalWords:  Makefile usepackage newlfont oldlfont
 
 
 REPLY-WARE
