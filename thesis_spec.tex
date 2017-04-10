@@ -10,7 +10,8 @@
 
 \newcommand {\caps}[1] {\mbox {\ifnum\fam=0 \scshape\else\uppercase\fi{#1}}}
 
-\newcommand {\tdadvisor} {Theses and Dissertations Advisor}
+\newcommand {\tdadvisor} {ETD Administrator}
+\newcommand {\oldtdadvisor} {Theses and Dissertations Advisor}
 \newcommand {\csd} {Computer Science Department}
 \newcommand {\regs} {{\sl Regulations for Thesis
 		      and Dissertation Preparation}}
@@ -34,6 +35,11 @@
   Typos are probably mine.
    ---John Heidemann.}
 
+\MaintainNote{
+  This document has been updated to reflect the new electronic process
+  adopted by the Graduate Division in 2012 for thesis and dissertation
+  submission.
+  --- Ryan Rosario.}
 
 This document explains how to format your thesis%
 \footnote {In order not to make this document overly verbose,
@@ -56,7 +62,9 @@ the \ucla\ Graduate Division's publication, \regs.
 All graduate students should obtain a copy of this publication,
 read it carefully, and check again in advance
 of the filing deadline to see if any changes have been made
-to the requirements.
+to the requirements. The manual now comes with a checklist.
+This checklist supersedes any outdated, incomplete or vague
+ content in the manual.
 
 
 \section {Thesis and Dissertation Format Requirements}
@@ -120,8 +128,9 @@ to submit a sample of their thesis manuscript
 (including all the preliminary pages)
 for review and approval well in advance of the filing deadline.
 Think about how long you've been here---can't you really 
-  manage to get that dissertation to Powell slightly before the
-  last day to file?
+  manage to get that dissertation to the online Graduate Division
+filing application\footnote{http://grad.ucla.edu/etd}  slightly 
+before the last day to file?
 
 
 \section {Using the \LaTeX\ \texttt{uclathes} Style}
@@ -250,8 +259,10 @@ which can be used to produce an annotated bibliography.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\vitaitem   {1952}
-                {Born, San Francisco, California, USA.}
+% UCLA security standards no longer allow specifying the year or place
+% of birth. The degree for which this manuscript is written must also
+% not be included.
+
 \vitaitem   {1974--1975}
                 {Campus computer center ``User Services'' programmer and
                 consultant, Stanford Center for Information Processing,
@@ -342,13 +353,19 @@ in your main source file.
 
 Note that those headings on preliminary pages
 which are shown in FULL CAPITALS in \regs\
-are produced in {\sc Upper/Lower Small Capitals}
+have in the past appeared in {\sc Upper/Lower Small Capitals}
 by the \verb+uclathes+ document style.
 Also, the thesis title---%
 as well as the student's name on the title page---%
-will appear in large, bold type.
-The last time I checked,
-the \tdadvisor\ had approved these variations.%
+appeared in large, bold type.
+As of September 2016, this is no longer acceptable.
+The headings of preliminary pages cannot use small caps.
+The title and author must be the same size as the
+surrounding text, with ``University of California" and
+``Abstract of the Thesis/Dissertation" appearing in 
+FULL CAPITALS and \textbf{only} the title may be bolded
+if the committee allows for it. Author name cannot be
+in bold font.
 \footnote {See the section
 ``If the Dissertation Advisor Gives You Trouble''
 before you go to file your manuscript.}
@@ -362,10 +379,12 @@ via a \verb+\title+ command, as follows:
 \verb+\title {+{\sl text\/}\verb+}+
 \end {center}
 
-The title will be printed in large (17-point) boldface type,
+The title will be printed in normal (12-point) type,
 in a \LaTeX\ \verb+center+ environment.
 It is recommended that you specify explicit line breaks
-via \LaTeX\ \verb+\\+ commands.
+via \LaTeX\ \verb+\\+ commands. The title \textit{may}
+be bolded only if the committee allows, and this change
+must be added manually.
 
 Your own name should be specified
 via an \verb+\author+ command, as follows:
@@ -630,8 +649,6 @@ will be printed in a single, unified list,
 in the order specified.
 The \verb+uclathes+ document style macros
 will automatically generate the proper heading
-({\sc Publications}, {\sc Presentation},
-or {\sc Publications and Presentations}),
 as appropriate.
 
 
@@ -737,7 +754,7 @@ many people feel that double-spacing
 of the output of modern laser printers
 is not necessary to ensure easy readability of the manuscript,
 and may indeed detract from readability.
-
+\newpage
 Even though \regs\ requires double spacing,
 it appears that the \ucla\ \tdadvisor\ will in fact accept
 manuscripts with one-and-a-half spacing
@@ -765,7 +782,7 @@ much easier for their personnel to transcribe.}
 
 If you intend to use the \verb+single+ option,
 it is imperative that you bring a sample of your manuscript
-to the \tdadvisor\ (141 Powell Library, 825-3625)
+to the \tdadvisor\ (1255 Murphy Hall, 310-825-3819, academicservices@grad.ucla.edu)
 for review and approval
 well in advance of the filing deadline---%
 if at all possible, by the beginning of the quarter
@@ -778,11 +795,14 @@ This is crucially important, for two reasons:
 \begin {itemize}
 
 \item
-The last time I checked, the \tdadvisor\ insisted that anyone
+The last time I checked, the \oldtdadvisor\ insisted that anyone
 wanting to use closer than double line spacing must bring a sample
 to her office in advance of filing.
-This is something she has been encouraging students to do for
-years anyway (though with only limited success).
+This is something she had been encouraging students to do for
+years anyway (though with only limited success). \textbf{As of
+2012, it is unclear if this is still encouraged. Ryan did find
+the \tdadvisor\ accessible and available by email during the
+filing process.}
 
 \item
 In case, for some reason, your manuscript is found unacceptable,
@@ -819,9 +839,7 @@ I did this because the double-spaced, single column format
 	}
 
 If you're interested in trying the ``two-outputs'' approach,
-  look at the \texttt{demo2} example.
-\texttt{demo2rep} and \texttt{demo2the} are font-ends that
-  format the main text in different ways.
+  look at the \texttt{demo\_techreport} example.
 
 
 \section {Possible Future Developments}
@@ -881,15 +899,21 @@ that is produced via the \verb+uclathes+ macros
 (for example, the selection of fonts on the preliminary pages,
 or the line spacing if you are using the \verb+single+ option),
 please get as much {\em specific\/} information as possible
-regarding what she is objecting to,
-and let me know right away.
+regarding what they are objecting to,
+and let us know right away.
 
 \MaintainNote{I'm interested
-  in hearing about objections the \tdadvisor\ has to
+  in hearing about objections the \oldtdadvisor\ has to
   the default format provided by \texttt{uclathes}.
   Since it has been accepted for my dissertation,
   it is correct as of 1995.
    ---John.}
+
+\MaintainNote{We are interested
+  in hearing about any issues you face with the
+  \tdadvisor\ regarding the \texttt{uclathes} template. It has been used
+  for three manuscripts that were approved as of April 2017.
+  ---Ryan.}
 
 \end {document}
 

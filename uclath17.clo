@@ -14,7 +14,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \def\uclathxiiversion{1.0 beta}
 \def\uclathxiidate{1995/05/11}
-\ProvidesFile{uclath12.clo}[\uclathxiidate, \uclathxiiversion]
+\ProvidesFile{uclath17.clo}[\uclathxiidate, \uclathxiiversion]
 
 
 \lineskip 1pt            % \lineskip is 1pt for all font sizes.
@@ -133,7 +133,9 @@
 
 % FOOTNOTES:
 
-\footnotesep 8.4pt    % Height of strut placed at the beginning of every
+% As of 2016, footnotes must be separated by a single blank line.
+% Original value here was 8.4pt so we just doubled it.
+\footnotesep 16.8pt   % Height of strut placed at the beginning of every
                       % footnote = height of normal \footnotesize strut,
                       % so no extra space between footnotes.
 
@@ -255,11 +257,13 @@
 % \@makeschapterhead {TEXT} : Makes the heading for the \chapter* command.
 %
 
+% As of 2016, these titles must be same size as surrounding text and
+% cannot be bold.
 \def\@makeschapterhead#1{            % Heading for \chapter* command
    % \vspace*{20pt}                  % Space at top of page.
   { \parindent 0pt \raggedright 
-    \centering \large \scshape       % Title.
-    #1\par 
+    \centering         % Title.
+    \header{#1}\par 
     \nobreak                         % TeX penalty to prevent page break.
     \vskip 20pt                      % Space between title and text.
   } }

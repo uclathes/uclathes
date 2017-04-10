@@ -63,10 +63,10 @@
    \begin {titlepage}
       \ColumnSave
       \begin {center}
-         \textsc{\large University of California} \\
+         \header{University of California} \\
          \normalsize Los Angeles \\
          \vfill
-         \textbf{\@titlesize \@title} \\
+         \@titlesize \@title \\
          \vskip 48pt plus0pt minus18pt
          \normalsize A \@thesisname\
 	 submitted in partial satisfaction \\
@@ -75,7 +75,7 @@
          \vskip 24pt plus0pt minus6pt
          by \\
          \vskip 24pt plus0pt minus6pt
-         \textbf{\large \@author} \\
+         {\@author} \\
          \vfill
          {\normalsize \@degreeyear}
       \end {center}
@@ -228,7 +228,7 @@
 \newcommand\@makeacknowledgmentsheading{
   {
     \centering
-    \textsc{\large Acknowledgments}
+    \header{Acknowledgments}
     \vskip 12pt
   }
 }
@@ -356,7 +356,7 @@
       \par\pagestyle{plain}
       \renewcommand\baselinestretch{\@spacing}\@normalsize
       \begin{center}
-         \textsc{\large Vita} \\
+         {\header{Vita}} \\
       \end{center}
       \vskip 12pt
       \ifnum\c@vitaitems>0  \@printvitaitem{\@vitaA} \fi
@@ -391,13 +391,14 @@
 	 \fi
 	 \vskip 36pt
 	 \begin{center}
-	    \large \scshape
+	    \header{
 	    \if@pubs
 	       \if@pres Publications and Presentations
 	       \else    Publications
 	       \fi
 	    \else       Presentations
 	    \fi
+	    }
 	    \\
 	 \end{center}
 	 \nobreak \vskip 12pt
@@ -455,10 +456,14 @@
       \setcounter{page}{2}
       \par\pagestyle{plain}
       \begin{center}
-         \textsc{\large Abstract of the \@Thesisname}\\[12pt]
-         \textbf{\@titlesize \@title}\\[12pt]
+         % 2016 Title and author can no longer be in bold, or 
+         % be larger than surrounding text.
+         \header{Abstract of the \MakeUppercase{\@Thesisname}}\\[12pt]
+         % 2016 Author name can no longer be in bold, or be larger
+         % than surrounding text.
+         {\@titlesize \@title}\\[12pt]
          \normalsize \normalfont by\\[12pt]
-         \textbf{\large \@author} \\
+         {\@author} \\
          \normalsize \normalfont
 	 \@degreename\if@department\ in \@department \fi\\
          University of California, Los Angeles, \@degreeyear \\

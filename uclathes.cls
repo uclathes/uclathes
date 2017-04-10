@@ -162,6 +162,10 @@
 %
 \RequirePackage{ifthen}
 
+% Internally, this forces all headers checked by the University to meet the formatting
+% guidelines.
+\def\header#1{\uppercase{#1}}
+
 % Get the title page macros.
 \input{uclathma.clo}
 
@@ -198,11 +202,11 @@
 
 \ProcessOptions
 
-% The "uclath12.sty" file defines things that depend on the type size.
+% The "uclath17.sty" file defines things that depend on the type size.
 % In order to meet the UCLA requirements for minimum size of print in a
 % thesis or dissertation, only one size (12-point) is supported.
 
-\input{uclath12.clo}\relax
+\input{uclath17.clo}\relax
 
 
 %    ****************************************

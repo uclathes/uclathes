@@ -16,7 +16,7 @@
 
 \def\@title{NO TITLE!?!}
 \def\@author{NO AUTHOR!?!}
-\def\@titlesize{\Large}
+\def\@titlesize{\normalsize}  % 2016: Cannot be larger than other text.
 \renewcommand{\title}[1]{\def\@title{#1}}
 \renewcommand{\author}[1]{\def\@author{#1}}
 \newcommand{\titlesize}[1]{\def\@titlesize{#1}}

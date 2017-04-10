@@ -6,12 +6,12 @@
 
 FILES=README \
 	demo.tex demo.dvi demo.pdf \
-	demo2big.tex demo2mac.tex demo2rep.tex demo2the.tex demo2int.tex demo2ti.tex demo2rep.pdf demo2the.pdf \
-	thesdoc.tex thesdoc.pdf \
+	demo_techreport.tex demo_techreport.pdf \
+	thesis_spec.tex thesis_spec.pdf \
 	uclathes.cls uclath12.clo uclathti.clo uclathma.clo \
 	uclathes.bst Makefile
 
-all:  latex dvips
+all:  latex ps pdf
 
 tar: $(FILES)
 	tar cvf uclathes.tar $(FILES)
@@ -32,31 +32,23 @@ ps demo.ps::
 pdf demo.pdf::
 	$(PS2PDF) demo.ps demo.pdf
 
-latex latex.demo2rep::
-	latex demo2rep
+latex latex.demo_techreport::
+	latex demo_techreport
 
-ps demo2rep.ps::
-	$(DVIPS) demo2rep
+ps demo_techreport.ps::
+	$(DVIPS) demo_techreport
 
-pdf demo2rep.pdf::
-	$(PS2PDF) demo2rep.ps demo2rep.pdf
+pdf demo_techreport.pdf::
+	$(PS2PDF) demo_techreport.ps demo_techreport.pdf
 
-latex latex.demo2the::
-	latex demo2the
+latex latex.thesis_spec::
+	latex thesis_spec
 
-ps demo2the.ps::
-	$(DVIPS) demo2the
+ps thesis_spec.ps::
+	$(DVIPS) thesis_spec
 
-pdf demo2the.pdf::
-	$(PS2PDF) demo2the.ps demo2the.pdf
+pdf thesis_spec.pdf::
+	$(PS2PDF) thesis_spec.ps thesis_spec.pdf
 
-latex latex.thesdoc::
-	latex thesdoc
-
-ps thesdoc.ps::
-	$(DVIPS) thesdoc
-
-pdf thesdoc.pdf::
-	$(PS2PDF) thesdoc.ps thesdoc.pdf
-
-
+clean:
+	rm *.aux *.toc *.lot *.lof *.dvi *.log *.ps
