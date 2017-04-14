@@ -2,7 +2,8 @@
 uclathes - UCLA Thesis LaTeX Style
 ==================================
 
-2017-04-09, release 1.4
+2017-04-13, release 1.4
+
 2012-04-16, release 1.3
 
 
@@ -28,7 +29,7 @@ WHAT IS NEW WITH UCLATHES 1.4?
 ------------------------------
 
 UCLA has changed the style requirements for theses and dissertations
-again as of some time late 2016. These changes make manuscripts more
+again as of September 2016. These changes make manuscripts more
 consistent with the new electronic format that was adopted in 2012.
 Ryan Rosario updated uclathes-1.3 to match the new style and can
 confirm that it works as his dissertation was approved under the new
@@ -138,7 +139,7 @@ Moving forward, documentation will be centralized on the GitHub wiki at: <https:
 
 IMPORTANT: The UCLA Graduate Division maintains a document titled *UCLA Thesis and Dissertation Filing Requirements*. 
 As of April 2017, the manual is outdated, **but the checklist on page 25 is updated and is used to approve manuscripts.**
-[https://grad.ucla.edu/gasaa/etd/filingrequirements.pdf]
+<https://grad.ucla.edu/gasaa/etd/filingrequirements.pdf>
 
 WHERE TO GET UCLATHES
 ---------------------
