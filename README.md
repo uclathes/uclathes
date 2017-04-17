@@ -2,6 +2,8 @@
 uclathes - UCLA Thesis LaTeX Style
 ==================================
 
+2017-04-13, release 1.4
+
 2012-04-16, release 1.3
 
 
@@ -13,6 +15,45 @@ style to format UCLA dissertations and theses.
 This style is based on work from Leslie Lamport,
 Dorab Patel, Eduardo Krell, Richard B. Wales, and John Heidemann.
 
+DISCLAIMER
+----------
+The UCLA Graduate Division does not recognize `uclathes` as a template
+for a thesis or dissertation. While countless students have used this
+template and successfully filed their manuscripts, the Graduate
+Division does not accept the template (or previous submissions) as an
+excuse for not meeting the filing requirements. If you find any bugs
+or have issues completing the filing process, let us know in the 
+`Issues` section with a solution for future students.
+
+WHAT IS NEW WITH UCLATHES 1.4?
+------------------------------
+
+UCLA has changed the style requirements for theses and dissertations
+again as of September 2016. These changes make manuscripts more
+consistent with the new electronic format that was adopted in 2012.
+Ryan Rosario updated uclathes-1.3 to match the new style and can
+confirm that it works as his dissertation was approved under the new
+rules in Spring 2017. Much of these changes were indicated by
+Sean Lake and Xiaochen Lian, and their dissertations were approved 
+February 2017 and March 2017 respectively. Ryan's dissertation was
+approved in April 2017.
+
+Specifically:
+- Margins are now 1" on all sides.
+- Title and author name on title and abstract pages can no longer
+  bold.
+- The small caps \textsc{..} and \scshape titles for title page
+  headers is no longer permitted.
+- Title and author name on title and abstract pages can no longer
+  larger than the surrounding text.
+- If footnotes are single spaced, they must be separated by a single
+  blank line.
+
+Several other changes were made to make the files less confusing to use:
+
+- Some filenames were changed to better reflect their purpose.
+- Extra files required for the demo technical report were renamed 
+  and put into an include directory. 
 
 WHAT IS NEW WITH UCLATHES 1.3?
 ------------------------------
@@ -50,22 +91,25 @@ WHAT IS IN UCLATHES?
 Enclosed in this package are the following files:
 
 
-  `uclathes.cls, uclath12.clo, uclathti.clo`  
+  `uclathes.cls, uclath17.clo, uclathti.clo`  
 	These three files implement the LaTeX2e "uclathes" document class.
 
   `uclathes.bst`  
 	This file implements the BibTeX "uclathes" bibliography style.
 
-  `thesdoc.tex, thesdoc.ps`  
-	A document describing the "uclathes" style material.
+  `thesis_spec.tex`  
+	A document describing the "uclathes" style material with tips for
+	approval. Candidate should read the document
+	*UCLA Thesis and Dissertation Filing Requirements* which is the
+	official specification for the filing format.
 
-  `demo.tex, demo.ps`  
-	The "demo thesis" described in `thesdoc.tex`.
+  `demo.tex`  
+	An example first few pages of the thesis. The "demo thesis" described
+	in `thesdoc.tex`.
 
-  `demo2big.tex, demo2mac.tex, demo2rep.tex, demo2the.tex, demo2ti.tex, demo2rep.ps, demo2the.ps`  
-	Another demonstration thesis.  This one can be formatted
-	two ways, as a uclathes or as a report (latex `demo2the`
-	and `demo2rep`, respectively)
+  `demo_techreport.tex` and all files in the `include` directory
+	These files are not necessary for filing, but provide another demonstration thesis
+	that can be formatted as a technical report (latex `demo_techreport`),
 
   `Makefile`  
 	Automates TeX'ing documents.
@@ -92,6 +136,10 @@ Read `thesdoc.ps` (or format and read `thesdoc.tex`) before
 proceeding.
 
 Moving forward, documentation will be centralized on the GitHub wiki at: <https://github.com/uclathes/uclathes/wiki>
+
+IMPORTANT: The UCLA Graduate Division maintains a document titled *UCLA Thesis and Dissertation Filing Requirements*. 
+As of April 2017, the manual is outdated, **but the checklist on page 25 is updated and is used to approve manuscripts.**
+<https://grad.ucla.edu/gasaa/etd/filingrequirements.pdf>
 
 WHERE TO GET UCLATHES
 ---------------------
