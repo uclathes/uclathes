@@ -474,7 +474,7 @@
   \if@figures\chapter*{List of Figures\markboth
    {LIST OF FIGURES}{LIST OF FIGURES}}\@starttoc{lof}\fi}
 
-\def\l@figure{\@dottedtocline{1}{1.5em}{2.3em}}
+\def\l@figure{\@dottedtocline{1}{0em}{2.3em}}
 
 % LIST OF TABLES
 %
