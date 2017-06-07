@@ -62,14 +62,16 @@
 \newcommand\@maketitlepage{
    \begin {titlepage}
       \ColumnSave
+      \normalsize \normalfont
+      \ifdefined\pdfbookmark\pdfbookmark{Title Page}{titlepage}\fi
       \begin {center}
-         \header{University of California} \\
+         \MakeUppercase{University of California} \\
          \normalsize Los Angeles \\
          \vfill
          \@titlesize \@title \\
          \vskip 48pt plus0pt minus18pt
-         \normalsize A \@thesisname\
-	 submitted in partial satisfaction \\
+         \normalsize \normalfont
+         A \@thesisname\ submitted in partial satisfaction \\
          of the requirements for the degree \\
          \@degreename\if@department\ in \@department \fi\\
          \vskip 24pt plus0pt minus6pt
@@ -77,7 +79,7 @@
          \vskip 24pt plus0pt minus6pt
          {\@author} \\
          \vfill
-         {\normalsize \@degreeyear}
+         \normalsize \normalfont \@degreeyear
       \end {center}
       \ColumnRestore
    \end {titlepage}
@@ -108,7 +110,7 @@
          %\ by \@author \\
          %\@copyrightinfo
 	 \normalsize \normalfont \copyright\ Copyright by \\
-	 \@author \\ \@copyrightyear
+	 \@author \\ \normalsize \normalfont \@copyrightyear
       \end{center}
    \fi
    \ColumnRestore
@@ -151,40 +153,47 @@
 % changed, it may be desirable to change the "\vskip" before the name.
 
 \newcommand\@signatureline[1]{
-   #1
-   
+   #1\par%
 }
 
 \newcommand\@makesignaturepage{
    \ColumnSave
+   \ifdefined\pdfbookmark\pdfbookmark{Committee}{committee}\fi
    \noindent
    \renewcommand\baselinestretch{\@doublespacing}\@normalsize
-   \normalsize \normalfont The \@thesisname\ of \@author\ is approved.
-   
-   {\centering
-      \ifnum\c@members>5 \@signatureline{\@memberF}\fi
-      \ifnum\c@members>4 \@signatureline{\@memberE}\fi
-      \ifnum\c@members>3 \@signatureline{\@memberD}\fi
-      \ifnum\c@members>2 \@signatureline{\@memberC}\fi
-      \ifnum\c@members>1 \@signatureline{\@memberB}\fi
+   \normalsize \normalfont The \@thesisname\ of {\@author} is approved.\par%
+   {\centering % Need \centering instead of \begin{center} to avoid extra 
+   % line spacing (2017 Thesis & Dissertation Filing Requirements).
+      % Non-chair committee members
       \ifnum\c@members>0 \@signatureline{\@memberA}
-         \else\typeout{No non-chair committee members.}\fi
+         \ifnum\c@members>1 \@signatureline{\@memberB}
+            \ifnum\c@members>2 \@signatureline{\@memberC}
+               \ifnum\c@members>3 \@signatureline{\@memberD}
+                  \ifnum\c@members>4 \@signatureline{\@memberE}
+                     \ifnum\c@members>5 \@signatureline{\@memberF}
+                     \fi
+                  \fi
+               \fi
+            \fi
+         \fi
+      \else
+	     \typeout{No non-chair committee members.}
+      \fi
+      % Committee chairs
       \ifnum\c@chairs>2
+         \@signatureline{\@chairA, Committee Co-chair}
+         \@signatureline{\@chairB, Committee Co-chair}
          \@signatureline{\@chairC, Committee Co-chair}
-         \@signatureline{\@chairB, Committee Co-chair}
-         \@signatureline{\@chairA, Committee Co-chair}
       \else\ifnum\c@chairs>1
-         \@signatureline{\@chairB, Committee Co-chair}
          \@signatureline{\@chairA, Committee Co-chair}
+         \@signatureline{\@chairB, Committee Co-chair}
       \else\ifnum\c@chairs>0
          \@signatureline{\@chairA, Committee Chair}
       \else\typeout{No committee chair.}
       \fi\fi\fi
       \vskip 72pt
-      University of California, Los Angeles
-      
-      \@degreeyear
-      
+      University of California, Los Angeles\par      
+      \@degreeyear\par % Need to end with \par to avoid \centering not end issue     
    }
    \ColumnRestore
    \renewcommand\baselinestretch{\@spacing}\@normalsize
@@ -203,6 +212,7 @@
 \newcommand\@makededication{
    \if@dedication
       \ColumnSave
+      \ifdefined\pdfbookmark\pdfbookmark{Dedication}{dedication}\fi
       \par\pagestyle{plain}
       \renewcommand\baselinestretch{\@spacing}\@normalsize\normalfont
       \vspace*{0pt}		% force spacing at top of page
@@ -225,13 +235,20 @@
 \def\@acknowledgments{}
 \newcommand\acknowledgments[1]{\@ackstrue\def\@acknowledgments{#1}}
 
+% Modified by Louis 2017
+\newcommand\acksname{Acknowledgments} % Allows user to change later
 \newcommand\@makeacknowledgmentsheading{
-  {
-    \centering
-    \header{Acknowledgments}
-    \vskip 12pt
-  }
+   \chapter*{\acksname}% Change it to a chapter so that toc is correct
+   \markboth{\MakeUppercase\acksname}{\MakeUppercase\acksname}%
+   \addcontentsline{toc}{chapter}{\acksname}% Add to toc 
 }
+% \newcommand\@makeacknowledgmentsheading{
+%   {
+%     \centering
+%     \header{Acknowledgments}
+%     \vskip 12pt
+%   }
+% }
 
 
 \newcommand\@makeacknowledgments{
@@ -258,8 +275,10 @@
 
 \newcounter{vitaitems}
 \setcounter{vitaitems}{0}
-\newcommand\@vitadate[1]{{\parbox[t]{1in}{\normalfont{#1}}}}
-\newcommand\@vitatext[1]{{\parbox[t]{5.25in}{\normalfont{#1}}}}
+%\newcommand\@vitadate[1]{{\parbox[t]{1in}{\normalfont{#1}}}}
+%\newcommand\@vitatext[1]{{\parbox[t]{5.25in}{\normalfont{#1}}}}
+\newcommand\@vitadate[1]{#1}
+\newcommand\@vitatext[1]{#1}
 \newcommand\vitaitem[2]{
    \ifcase\value{vitaitems}
       \def\@vitaA{\@vitadate{#1} & \@vitatext{#2}} \or
@@ -338,59 +357,66 @@
    \addtocounter{publications}{1}
 }
 
-\newcommand\@printvitaitem[1]{
-   \noindent
-   \begin {tabular} {@{}p{1in}@{}p{6in}@{}}
-      #1
-   \end {tabular}
-}
+\newcommand\@printvitaitem[1]{#1\\}
+\newcommand\@printpubitem[1]{\noindent #1\par}
 
-\newcommand\@printpubitem[1]{\par \noindent #1}
+\newcommand\vitaname{Vita}        % Allows user to change later
+\newcommand\vitastretch{1.67}     % Allows user to change later
+\newcommand\vitadatewidth{1in}    % Width of date column in vita
+\newcommand\vitatextwidth{5.25in} % Width of text column in vita
+% The sum of the widths needs to be 6.25in since 2 columns give 3 column
+% spacing. 3 column spacing take 3 * 6 pt * 0.1384 in/pt ~= 0.25 in.
+% Remaning width for table columns is 6.5in - 0.25in = 6.25in
+
+\newcommand\customCV[1]{\def\@customCV{#1}}
 
 \newcommand\@makevitapage{
    % Save the old stretch.
+   \ColumnSave
    \let\OldArrayStretch=\arraystretch
-   \renewcommand\arraystretch{1.67}
+   \renewcommand\arraystretch{\vitastretch}
+   \pagestyle{plain}
    \ifnum\c@vitaitems>0
-      \ColumnSave
-      \par\pagestyle{plain}
-      \renewcommand\baselinestretch{\@spacing}\@normalsize
-      \begin{center}
-         {\header{Vita}} \\
-      \end{center}
-      \vskip 12pt
-      \ifnum\c@vitaitems>0  \@printvitaitem{\@vitaA} \fi
-      \ifnum\c@vitaitems>1  \@printvitaitem{\@vitaB} \fi
-      \ifnum\c@vitaitems>2  \@printvitaitem{\@vitaC} \fi
-      \ifnum\c@vitaitems>3  \@printvitaitem{\@vitaD} \fi
-      \ifnum\c@vitaitems>4  \@printvitaitem{\@vitaE} \fi
-      \ifnum\c@vitaitems>5  \@printvitaitem{\@vitaF} \fi
-      \ifnum\c@vitaitems>6  \@printvitaitem{\@vitaG} \fi
-      \ifnum\c@vitaitems>7  \@printvitaitem{\@vitaH} \fi
-      \ifnum\c@vitaitems>8  \@printvitaitem{\@vitaI} \fi
-      \ifnum\c@vitaitems>9  \@printvitaitem{\@vitaJ} \fi
-      \ifnum\c@vitaitems>10 \@printvitaitem{\@vitaK} \fi
-      \ifnum\c@vitaitems>11 \@printvitaitem{\@vitaL} \fi
-      \ifnum\c@vitaitems>12 \@printvitaitem{\@vitaM} \fi
-      \ifnum\c@vitaitems>13 \@printvitaitem{\@vitaN} \fi
-      \ifnum\c@vitaitems>14 \@printvitaitem{\@vitaO} \fi
-      \ifnum\c@vitaitems>15 \@printvitaitem{\@vitaP} \fi
-      \ifnum\c@vitaitems>16 \@printvitaitem{\@vitaQ} \fi
-      \ifnum\c@vitaitems>17 \@printvitaitem{\@vitaR} \fi
-      \ifnum\c@vitaitems>18 \@printvitaitem{\@vitaS} \fi
-      \ifnum\c@vitaitems>19 \@printvitaitem{\@vitaT} \fi
-      \ifnum\c@vitaitems>20 \@printvitaitem{\@vitaU} \fi
-      \ifnum\c@vitaitems>21 \@printvitaitem{\@vitaV} \fi
-      \ifnum\c@vitaitems>22 \@printvitaitem{\@vitaW} \fi
-      \ifnum\c@vitaitems>23 \@printvitaitem{\@vitaX} \fi
-      \ifnum\c@vitaitems>24 \@printvitaitem{\@vitaY} \fi
-      \ifnum\c@vitaitems>25 \@printvitaitem{\@vitaZ} \fi
-      \ifnum\c@publications>0{
-         \ifx\@spacing\@doublespacing\parskip 24pt plus 4pt
-	 \else                       \parskip 12pt plus 2pt
-	 \fi
-	 \vskip 36pt
-	 \begin{center}
+      \chapter*{\vitaname}% Changes this to a chapter*
+	  \addcontentsline{toc}{chapter}{\vitaname}%
+%      \begin{center}
+%         {\header{Vita}} \\
+%      \end{center}
+%      \vskip 12pt
+      \normalsize \normalfont \noindent%
+	  \renewcommand\baselinestretch{\@spacing}\@normalsize
+	  \begin{tabular}{p{\vitadatewidth}p{\vitatextwidth}}
+		  \ifnum\c@vitaitems>0  \@printvitaitem{\@vitaA} \fi
+		  \ifnum\c@vitaitems>1  \@printvitaitem{\@vitaB} \fi
+		  \ifnum\c@vitaitems>2  \@printvitaitem{\@vitaC} \fi
+		  \ifnum\c@vitaitems>3  \@printvitaitem{\@vitaD} \fi
+		  \ifnum\c@vitaitems>4  \@printvitaitem{\@vitaE} \fi
+		  \ifnum\c@vitaitems>5  \@printvitaitem{\@vitaF} \fi
+		  \ifnum\c@vitaitems>6  \@printvitaitem{\@vitaG} \fi
+		  \ifnum\c@vitaitems>7  \@printvitaitem{\@vitaH} \fi
+		  \ifnum\c@vitaitems>8  \@printvitaitem{\@vitaI} \fi
+		  \ifnum\c@vitaitems>9  \@printvitaitem{\@vitaJ} \fi
+		  \ifnum\c@vitaitems>10 \@printvitaitem{\@vitaK} \fi
+		  \ifnum\c@vitaitems>11 \@printvitaitem{\@vitaL} \fi
+		  \ifnum\c@vitaitems>12 \@printvitaitem{\@vitaM} \fi
+		  \ifnum\c@vitaitems>13 \@printvitaitem{\@vitaN} \fi
+		  \ifnum\c@vitaitems>14 \@printvitaitem{\@vitaO} \fi
+		  \ifnum\c@vitaitems>15 \@printvitaitem{\@vitaP} \fi
+		  \ifnum\c@vitaitems>16 \@printvitaitem{\@vitaQ} \fi
+		  \ifnum\c@vitaitems>17 \@printvitaitem{\@vitaR} \fi
+		  \ifnum\c@vitaitems>18 \@printvitaitem{\@vitaS} \fi
+		  \ifnum\c@vitaitems>19 \@printvitaitem{\@vitaT} \fi
+		  \ifnum\c@vitaitems>20 \@printvitaitem{\@vitaU} \fi
+		  \ifnum\c@vitaitems>21 \@printvitaitem{\@vitaV} \fi
+		  \ifnum\c@vitaitems>22 \@printvitaitem{\@vitaW} \fi
+		  \ifnum\c@vitaitems>23 \@printvitaitem{\@vitaX} \fi
+		  \ifnum\c@vitaitems>24 \@printvitaitem{\@vitaY} \fi
+		  \ifnum\c@vitaitems>25 \@printvitaitem{\@vitaZ} \fi
+	  \end{tabular}
+   \fi%
+   \ifnum\c@publications>0
+     \vskip 36pt
+	 {\centering
 	    \header{
 	    \if@pubs
 	       \if@pres Publications and Presentations
@@ -398,11 +424,14 @@
 	       \fi
 	    \else       Presentations
 	    \fi
-	    }
-	    \\
-	 \end{center}
-	 \nobreak \vskip 12pt
-         \ifnum\c@publications>0  \@printpubitem{\@pubA} \fi
+	    }\par
+	 }
+     {% Make sure the \parskip only affect this part
+	 \nobreak \vspace{12pt}% Use \vspace to make sure no page break here
+     \ifx\@spacing\@doublespacing\parskip 24pt plus 4pt
+	 \else                       \parskip 12pt plus 2pt
+	 \fi
+	     \ifnum\c@publications>0  \@printpubitem{\@pubA} \fi
          \ifnum\c@publications>1  \@printpubitem{\@pubB} \fi
          \ifnum\c@publications>2  \@printpubitem{\@pubC} \fi
          \ifnum\c@publications>3  \@printpubitem{\@pubD} \fi
@@ -428,10 +457,13 @@
          \ifnum\c@publications>23 \@printpubitem{\@pubX} \fi
          \ifnum\c@publications>24 \@printpubitem{\@pubY} \fi
          \ifnum\c@publications>25 \@printpubitem{\@pubZ} \fi
-      }
-      \ColumnRestore
-   \fi\fi
+   }% End the \parskip change
+   \fi
+   \ifdefined\@customCV
+      \@customCV
+   \fi
    \renewcommand\arraystretch{\OldArrayStretch}
+   \ColumnRestore
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -452,20 +484,24 @@
 \newcommand{\@makeabstractpage}[1]{
    \if@abstract
       \ColumnSave
+      \ifdefined\pdfbookmark\pdfbookmark{Abstract}{abstract}\fi
       \pagenumbering{roman}
       \setcounter{page}{2}
       \par\pagestyle{plain}
+      \normalsize \normalfont
       \begin{center}
          % 2016 Title and author can no longer be in bold, or 
          % be larger than surrounding text.
-         \header{Abstract of the \MakeUppercase{\@Thesisname}}\\[12pt]
+         \MakeUppercase{Abstract of the \@Thesisname} \\
          % 2016 Author name can no longer be in bold, or be larger
          % than surrounding text.
-         {\@titlesize \@title}\\[12pt]
-         \normalsize \normalfont by\\[12pt]
-         {\@author} \\
-         \normalsize \normalfont
-	 \@degreename\if@department\ in \@department \fi\\
+         \vskip 24pt minus 6pt
+         \@title \\ \normalsize \normalfont
+         \vskip 24pt minus 6pt
+		 by\\
+		 \vskip 24pt minus 6pt
+         \@author \normalsize \normalfont \\
+         \@degreename\if@department\ in \@department \fi\\
          University of California, Los Angeles, \@degreeyear \\
          \ifnum\c@chairs>2
             Professor \@chairA, Co-chair \\
@@ -489,19 +525,19 @@
       % as well use the whole \textwidth.
       %
       \ifthenelse{\equal{#1}{\@stdsinglespacing}}{
-	\begin{center}
-	\begin{minipage}{4.75in}
-	\setlength{\parindent}{1.5em}
-	\@abstract
-        \end{minipage}
-	\end{center}
+         \begin{center}
+            \begin{minipage}{4.75in}
+               \setlength{\parindent}{1.5em}
+               \@abstract
+            \end{minipage}
+         \end{center}
       }{
-	\@abstract
+         \@abstract
       }
 
       \renewcommand\baselinestretch{\@spacing}\@normalsize
       \ColumnRestore
-  \else
+   \else
       \typeout{No abstract.}
    \fi
 }
@@ -527,8 +563,12 @@
   \@makesignaturepage
   \@makededication
   \tableofcontents
-  \listoffigures
-  \listoftables
+  \ifLOF
+    \listoffigures
+  \fi
+  \ifLOT
+    \listoftables
+  \fi
   \@makeacknowledgments
   \@makevitapage
   \newpage \pagenumbering{arabic}

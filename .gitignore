@@ -6,6 +6,9 @@
 *.dvi
 *.lot
 *.log
+*.blg
+*.out
+*.synctex.gz
 old_demo.ps.gz
 *.tar.gz
 RCS-

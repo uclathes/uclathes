@@ -86,47 +86,60 @@
 
 \normalsize  % Choose the normalsize font.
 
-
+
 %  ****************************************
 %  *            PAGE LAYOUT               *
 %  ****************************************
 %
-% All margin dimensions measured from a point one inch from top and side
-% of page.  A little extra (0.1 in) is added on each side to ensure that
-% the text will fall within the UCLA thesis margin limits even if photo-
-% copying enlarges or misaligns it slightly.
+% PAGE SIZE:
+% US letter size
+% Explicitly set the page size, for whose system is set to a4 paper.
+% This will only work for "direct-to-pdf" pdflatex.
+\ifx\pdfoutput\undefined\else
+    \pdfpagewidth 8.5in
+    \pdfpageheight 11in
+\fi
+
+\paperwidth 8.5in
+\paperheight 11in
 
 %
-% According to the Feb. 1995 revision of RfTaDP,
-% margins are to be 1.5'' left, 1'' top and right, and 1.5'' bottom.
-% I've checked these margins with dvips 5.58 output to a LaserJet IV
-% and they matched.   -johnh, 20-Jun-95
-%
+% According to the March 2012 Formatting and Filing Guide,
+% margins are to be 1'' left, right and top, 1'' bottom text,
+% and 0.75'' footer from bottom of the page for page number.
+% (Note that LaTeX measurements start with a 1-inch top/left margin by default.)
+
 
 % SIDE MARGINS:
-%\oddsidemargin 0.65in     %   Note that \oddsidemargin = \evensidemargin
-%\evensidemargin 0.65in    % these are added to the 1 inch margin.
+%\oddsidemargin 0in
+%\evensidemargin 0in    
+% Louis: these settings make the margin non-symmetry. The default latex
+%        margins are already 1 inch on the left and upper sides. 
 
 % VERTICAL SPACING:        
                           % Top of page:
-%\topmargin 0.15in         %    Nominal distance from top of page to top
-                          %    of box containing running head.
-\headheight 0pt           %    Height of box containing running head.
-\headsep 0pt              %    Space between running head and text.
-% \topskip = 10pt         %    '\baselineskip' for first line of page.
+%\topmargin 0pt           %    Distance from top of the header to the top
+                          %    margin. (Not using this)
+%\headheight 0pt          %    Height of the header. (Not using this)
+\headsep 0pt              %    Space between the header and the text.
                           % Bottom of page:
-% johnh: footheight unused
-% \footheight 12pt          %    Height of box containing running foot.
-\footskip 0.25in            %    Distance from baseline of box containing
-                            %    foot to baseline of last line of text.
-% johnh: footskip -> 0.8in from 0.6in to meet RFTADP guidelines
-% (probably with LaTeX209 footheight was added to footskip).
+\footskip 0.40in          %    Distance from baseline of box containing
+                          %    foot to baseline of last line of text.
+% Louis: footskip -> 0.40in to give more space between page number and the 
+%        last line of text. If you change this, you will also need to change
+%        \textheight.
 
 % DIMENSION OF TEXT:
 
-\textheight 9in       % Height of text (including footnotes and fig-
+\textheight 8.85in       % Height of text (including footnotes and fig-
                          % ures, excluding running head and foot).
+% To have 0.75" space from the bottom of the page to the page number, the \textheight needs to be:
+% 11in (\paperheight) - 1in (top) - 0.75in (page#) - 0.40in (\footskip)
+% = 8.85in
 \textwidth 6.5in         % Width of text line.
+% To have 1in margin on the right side for letter size paper, which have 
+% 8.5in width, the textwidth needs to be:
+% 8.5in (\paperwidth) - 1in (left and right) * 2 = 6.5in
 
 % A \raggedbottom command causes 'ragged bottom' pages: pages set to
 % natural height instead of being stretched to exactly \textheight.
@@ -166,7 +179,7 @@
 \@fpbot 0pt plus 1fil    % Stretch at bottom of float page/column. (Must be 
                          % 0pt plus ... )                                   
 
-
+
 %  ****************************************
 %  *           PARAGRAPHING               *
 %  ****************************************
@@ -200,7 +213,7 @@
 % \interlinepenalty    % Breaking at a line within a paragraph.
 % \brokenpenalty       % Breaking after a hyphenated line.
 
-
+
 %    ****************************************
 %    *        CHAPTERS AND SECTIONS         *
 %    ****************************************
@@ -257,13 +270,11 @@
 % \@makeschapterhead {TEXT} : Makes the heading for the \chapter* command.
 %
 
-% As of 2016, these titles must be same size as surrounding text and
-% cannot be bold.
 \def\@makeschapterhead#1{            % Heading for \chapter* command
    % \vspace*{20pt}                  % Space at top of page.
-  { \parindent 0pt \raggedright 
-    \centering         % Title.
-    \header{#1}\par 
+  { \parindent 0pt \raggedright
+    \centering                       % Title.
+	\header{#1}\par
     \nobreak                         % TeX penalty to prevent page break.
     \vskip 20pt                      % Space between title and text.
   } }
@@ -371,7 +382,7 @@
   \def\@chapapp{APPENDIX}
   \def\thechapter{\Alph{chapter}}}
 
-
+
 %    ****************************************
 %    *                LISTS                 *
 %    ****************************************
