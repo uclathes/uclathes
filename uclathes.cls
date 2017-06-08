@@ -164,7 +164,7 @@
 
 % Internally, this forces all headers checked by the University to meet the formatting
 % guidelines.
-\def\header#1{\uppercase{#1}}
+\def\header#1{\MakeUppercase{#1}}
 
 % Get the title page macros.
 \input{uclathma.clo}
@@ -198,17 +198,34 @@
 \DeclareOption{nohyphenatetitles}{\setboolean{hyphenatetitles}{false}}
 \DeclareOption{hyphenatetitles}{\setboolean{hyphenatetitles}{true}}
 
+%
+% Option to turn off "List of Figures", or "List of Tables"  
+% added 2017 by Louis
+\newif\ifLOF % Control if showing List of Figures
+\newif\ifLOT % Control if showing List of Tables
+\LOFtrue % Default is showing List of Figures
+\LOTtrue % Default is showing List of Tables
+\DeclareOption{nolistoffigures}{\LOFfalse}
+\DeclareOption{nolistoftables}{\LOTfalse}
+% \makeintropages will response to these settings
+
+%
+% Option for change the style of chapter* titles
+% This affects acknowledgment, CV, table of contents, LOT, LOF, references but 
+% not the title page and abstract page.
+\DeclareOption{scheader}{\def\header#1{\large \scshape #1}}
+
 % The \ProcessOptions command does the options.
 
 \ProcessOptions
 
-% The "uclath17.sty" file defines things that depend on the type size.
+% The "uclath17.clo" file defines things that depend on the type size.
 % In order to meet the UCLA requirements for minimum size of print in a
 % thesis or dissertation, only one size (12-point) is supported.
 
 \input{uclath17.clo}\relax
 
-
+
 %    ****************************************
 %    *                LISTS                 *
 %    ****************************************
@@ -285,7 +302,7 @@
 \newdimen\descriptionmargin
 \descriptionmargin=3em
 
-
+
 %    ****************************************
 %    *         OTHER ENVIRONMENTS           *
 %    ****************************************
@@ -340,7 +357,7 @@
 \fboxsep = 3pt    % Space left between box and text by \fbox and \framebox.
 \fboxrule = .4pt  % Width of rules in box made by \fbox and \framebox.
 
-
+
 %    ****************************************
 %    *        CHAPTERS AND SECTIONS         *
 %    ****************************************
@@ -383,7 +400,7 @@
 % command redefines it to be 'APPENDIX'.
 \def\@chapapp{CHAPTER}
 
-
+
 %    ****************************************
 %    *         TABLE OF CONTENTS, ETC.      *
 %    ****************************************
@@ -430,11 +447,23 @@
 \def\@dotsep{4.5}
 \setcounter{tocdepth}{2}
 
-% TABLEOFCONTENTS
+% TABLE OF CONTENTS
+%
 
-\def\tableofcontents{
-\chapter*{Table of Contents\markboth{CONTENTS}{CONTENTS}}
-\renewcommand\baselinestretch{\@spacing}\@normalsize\@starttoc{toc}}
+\newcommand\contentsname{Table of Contents} % Allows user to change later
+\newcommand\tableofcontents{%
+    \chapter*{%
+        \ifdefined\pdfbookmark\pdfbookmark{\contentsname}{contents}\fi%
+        \contentsname%        
+    }%
+    \markboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
+    \renewcommand\baselinestretch{\@spacing}%
+	\@normalsize%
+    \@starttoc{toc}%
+    }
+% \def\tableofcontents{
+% \chapter*{Table of Contents\markboth{CONTENTS}{CONTENTS}}
+% \renewcommand\baselinestretch{\@spacing}\@normalsize\@starttoc{toc}}
 
 \def\l@part#1#2{\addpenalty{-\@highpenalty}
    \addvspace{2.25em plus 1pt}  % space above part line
@@ -468,25 +497,41 @@
 
 % LIST OF FIGURES
 %
-\newif\if@figures
-\@figurestrue  % rbw did this in \makeintropages; I moved it here.  ---johnh 950825
-\def\listoffigures{
-  \if@figures\chapter*{List of Figures\markboth
-   {LIST OF FIGURES}{LIST OF FIGURES}}\@starttoc{lof}\fi}
+% Modified from the standard "article.cls" class by Louis 2017
 
-\def\l@figure{\@dottedtocline{1}{0em}{2.3em}}
+\newcommand\listfigurename{List of Figures} % Allows user to change the name later
+\newcommand\listoffigures{%
+    \chapter*{\listfigurename}% Appears as a chapter* 
+    \markboth{\MakeUppercase\listfigurename}{\MakeUppercase\listfigurename}%
+	\addcontentsline{toc}{chapter}{\listfigurename}
+    \@starttoc{lof}%
+    }
+\newcommand*\l@figure{\@dottedtocline{1}{0em}{2.3em}}
+%\newif\if@figures
+%\@figurestrue  % rbw did this in \makeintropages; I moved it here.  ---johnh 950825
+%\def\listoffigures{%
+%  \if@figures\chapter*{List of Figures\markboth
+%   {LIST OF FIGURES}{LIST OF FIGURES}}\@starttoc{lof}\fi}
+
+%\def\l@figure{\@dottedtocline{1}{0em}{2.3em}}
 
 % LIST OF TABLES
 %
-\newif\if@tables
-\@tablestrue  % rbw did this in \makeintropages; I moved it here.  ---johnh 950825
-\def\listoftables{
-  \if@tables\chapter*{List of Tables\markboth
-   {LIST OF TABLES}{LIST OF TABLES}}\@starttoc{lot}\fi}
+% Modified from the standard "article.cls" class by Louis 2017
 
+\newcommand\listtablename{List of Tables} % Allows user to change the name later
+\newcommand\listoftables{%
+    \chapter*{\listtablename}%
+    \markboth{\MakeUppercase\listtablename}{\MakeUppercase\listtablename}%
+    \addcontentsline{toc}{chapter}{\listtablename}
+    \@starttoc{lot}%
+    }
 \let\l@table\l@figure
+%\def\listoftables{
+%  \iftables\chapter*{List of Tables\markboth
+%   {LIST OF TABLES}{LIST OF TABLES}}\@starttoc{lot}\fi}
 
-
+
 %    ****************************************
 %    *             BIBLIOGRAPHY             *
 %    ****************************************
@@ -503,25 +548,46 @@
 %  \sfcode`\.=1000\relax --
 %      Causes a `.' (period) not to produce an end-of-sentence space.
 
-\def\thebibliography#1{\chapter*{References\markboth
-  {REFERENCES}{REFERENCES}}
-  \addcontentsline{toc}{chapter}{References}
+\newcommand\refname{References} % Allows user to change it later
+\newenvironment{thebibliography}[1]{%
+  \chapter*{\refname}%
+  \markboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+  \addcontentsline{toc}{chapter}{\refname}
   \renewcommand\baselinestretch{1}
   \@normalsize
   \list{[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
     \advance\leftmargin\labelsep
     \usecounter{enumi}}
-    \def\newblock{\hskip .11em plus .33em minus -.07em}
+    %\def\newblock{\hskip .11em plus .33em minus -.07em}
     \sloppy
     \sfcode`\.=1000\relax}
+  {\endlist\renewcommand\baselinestretch{\@spacing}\@normalsize}
 
-\def\endthebibliography{\renewcommand\baselinestretch{\@spacing}\@normalsize\endlist}
+\def\newblock{\hskip .11em\@plus.33em\@minus.07em}
+% Louis: I moved \newblock outside of thebibliography environment so that 
+%        this class can be compatible with the 'Natbib' package.
+
+% Natbib: If you are using 'natbib' package, the above 'thebibliography'
+%         environment will be overwritten by the 'Natbib' package. You will
+%         need to add the following commands:
+%
+%         \renewcommand{\bibname}{References}
+%         \renewcommand{\bibpreamble}{
+%             \addcontentsline{toc}{chapter}{References}
+%             \vskip 12pt
+%             \renewcommand\baselinestretch{1}
+%         }
+%         \renewcommand{\bibfont}{\normalsize}
+%
+%         after you load the 'natbib' package so that the format and spacing
+%         is consistent with this template.
+%
 
 % \def\@biblabel#1{[#1]\hfill}  % Produces the label for a \bibitem[...]
                                 % command. 
 % \def\@cite#1{[#1]}            % Produces the output of the \cite command.
 
-
+
 %    ****************************************
 %    *              THE INDEX               *
 %    ****************************************
@@ -551,7 +617,7 @@
 
 \def\indexspace{\par \vskip 10pt plus 5pt minus 3pt\relax}
 
-
+
 %    ****************************************
 %    *             FOOTNOTES                *
 %    ****************************************
@@ -596,7 +662,7 @@
 %    in the text.  Default used.
 %
 
-
+
 %    ****************************************
 %    *         FIGURES AND TABLES           *
 %    ****************************************
@@ -657,33 +723,51 @@
 
 % FIGURE
 %
+% Modified from the standard "article.cls" class by Louis 2017
+\newcommand\figurename{Figure} % Allows user to modify the name later
 \newcounter{figure}[chapter]
 \def\thefigure{\thechapter.\@arabic\c@figure}
 
 \def\fps@figure{tbp}
 \def\ftype@figure{1}
 \def\ext@figure{lof}
-\def\fnum@figure{Figure \thefigure}
-\def\figure{\@figurestrue\@float{figure}}
-\let\endfigure\end@float
-\@namedef{figure*}{\@figurestrue\@dblfloat{figure}}
-\@namedef{endfigure*}{\end@dblfloat}
+\def\fnum@figure{\figurename\nobreakspace\thefigure}
+\newenvironment{figure}
+               {\@float{figure}}
+               {\end@float}
+\newenvironment{figure*}
+               {\@dblfloat{figure}}
+               {\end@dblfloat}
+% \def\fnum@figure{Figure \thefigure}
+% \def\figure{\@figurestrue\@float{figure}} % \@figurestrue do nothing since it will always run after the list of figure has been made
+% \let\endfigure\end@float
+% \@namedef{figure*}{\@figurestrue\@dblfloat{figure}}
+% \@namedef{endfigure*}{\end@dblfloat}
 
 % TABLE
 %
+% Modified from the standard "article.cls" class by Louis 2017
+\newcommand\tablename{Table} % Allows user to modify the name later
 \newcounter{table}[chapter]
 \def\thetable{\thechapter.\@arabic\c@table}
 
 \def\fps@table{tbp}
 \def\ftype@table{2}
 \def\ext@table{lot}
-\def\fnum@table{Table \thetable}
-\def\table{\@tablestrue\@float{table}}
-\let\endtable\end@float
-\@namedef{table*}{\@tablestrue\@dblfloat{table}}
-\@namedef{endtable*}{\end@dblfloat}
+\def\fnum@table{\tablename\nobreakspace\thetable}
+\newenvironment{table}
+               {\@float{table}}
+               {\end@float}
+\newenvironment{table*}
+               {\@dblfloat{table}}
+               {\end@dblfloat}
+% \def\fnum@table{Table \thetable}
+% \def\table{\@tablestrue\@float{table}}
+% \let\endtable\end@float
+% \@namedef{table*}{\@tablestrue\@dblfloat{table}}
+% \@namedef{endtable*}{\end@dblfloat}
 
-
+
 %    ****************************************
 %    *            PAGE STYLES               *
 %    ****************************************
@@ -722,6 +806,8 @@
 % the right mark is changed by a \section command.  However, it does
 % produce somewhat anomalous results if two \bothmark's occur on the same page.
 % 
+% 2017 Louis: We are not using header in the UCLA thesis class, so \markboth{}{}
+%             are not relevant to us.
 
 \mark{{}{}}   % Initializes TeX's marks
 
@@ -750,7 +836,7 @@
 \def\@oddfoot{}\def\@evenhead{\rm \thepage\hfil\slshape\leftmark\hbox {}}%
 \def\@evenfoot{}\def\sectionmark##1{}\def\subsectionmark##1{}}
 
-
+
 %    ****************************************
 %    *            MISCELLANEOUS             *
 %    ****************************************
@@ -803,7 +889,7 @@
    \edef\@currentlabel{\csname p@footnote\endcsname\@thefnmark}\@makefntext
     {\rule{\z@}{\footnotesep}\ignorespaces
       #1\strut}\renewcommand\baselinestretch{\@spacing}}}
-
+
 %    ****************************************
 %    *           INITIALIZATION             *
 %    ****************************************

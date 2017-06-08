@@ -153,52 +153,6 @@ via \verb+\input+ commands.
 Figures~\ref{fig:prelim1} and \ref{fig:prelim2}
 show the commands for setting up the preliminary pages.
 
-\subsection {The $\backslash${\tt documentclass} Command}
-
-The \verb+\documentclass+ command at the start of the \LaTeX\ input text
-should have the following form:
-
-\begin {center}
-\verb+\documentclass [+{\sl options\/}\verb+] {uclathes}+
-\end {center}
-
-where {\sl options} is one of the following:
-
-\begin {description}
-
-\item [{\tt MS}]
---- M.S.\ thesis.
-
-\item [{\tt PhD}]
---- Ph.D.\ dissertation.
-
-\end {description}
-
-Note that capitalization is important:
-\verb+ms+, \verb+PHD+, or \verb+phd+ will {\em not\/} work.
-
-The \verb+uclathes+ document style is basically the same
-as the standard \LaTeX\ \verb+report+ style,
-as far as the body of the text is concerned.
-
-\subsection {The $\backslash${\tt bibliographystyle} Command}
-
-There is a matching \verb+uclathes+ bibliography style
-which should be used in conjunction with
-the \verb+uclathes+ document style.
-To use the \verb+uclathes+ bibliography style,
-use the following \verb+\bibliographystyle+ command
-near the end of your \LaTeX\ input
-(just before the \verb+\end {document}+ command):
-
-\begin {center} \verb+\bibliographystyle {uclathes}+ \end {center}
-
-The \verb+uclathes+ bibliography style is similar to the
-standard Bib\TeX\ \verb+alpha+ style.
-One important new feature in the \verb+uclathes+ style is
-the addition of a new \verb+annote+ field in a reference,
-which can be used to produce an annotated bibliography.
-
 \begin {figure}
 {\small
 \begin{verbatim}
@@ -223,6 +177,78 @@ which can be used to produce an annotated bibliography.
 \caption {Top-Level \LaTeX\ Input File ({\tt diss.tex})}
 \label {fig:toplevel}
 \end {figure}
+
+\subsection {The $\backslash${\tt documentclass} Command}
+
+The \verb+\documentclass+ command at the start of the \LaTeX\ input text
+should have the following form:
+
+\begin {center}
+\verb+\documentclass [+{\sl options\/}\verb+] {uclathes}+
+\end {center}
+where {\sl options} is one of the following:
+
+\begin {description}
+
+\item [{\tt MA}] --- Master of Arts thesis.
+
+\item [{\tt MS}] --- Master of Science thesis.
+
+\item [{\tt EdD}] --- Doctor of Education dissertation.
+
+\item [{\tt PhD}] --- Ph.D.\ dissertation.
+
+\end {description}
+Note that capitalization is important:
+\verb+ms+, \verb+PHD+, or \verb+phd+ will {\em not\/} work.
+
+The \verb+uclathes+ document style is basically the same
+as the standard \LaTeX\ \verb+report+ style,
+as far as the body of the text is concerned.
+
+In addition to the \verb+PhD+ and \verb+MS+ options, the new update also provides the following options:
+\begin {description}
+
+\item [{\tt nolistoffigures}] --- Disable List of Figures.
+
+\item [{\tt nolistoftables}] --- Disable List of Tables.
+
+\item [{\tt scheader}] --- Use small caps font (\verb+\scshape+) for the headers of preliminary pages and references except the title page and abstract pages. 
+
+\item [{\tt draft}] --- Make any overfull hboxes.
+
+\end {description}
+
+\subsection {The $\backslash${\tt bibliographystyle} Command}
+
+There is a matching \verb+uclathes+ bibliography style
+which should be used in conjunction with
+the \verb+uclathes+ document style.
+To use the \verb+uclathes+ bibliography style,
+use the following \verb+\bibliographystyle+ command
+near the end of your \LaTeX\ input
+(just before the \verb+\end {document}+ command):
+
+\begin {center} \verb+\bibliographystyle {uclathes}+ \end {center}
+
+The \verb+uclathes+ bibliography style is similar to the
+standard Bib\TeX\ \verb+alpha+ style.
+One important new feature in the \verb+uclathes+ style is
+the addition of a new \verb+annote+ field in a reference,
+which can be used to produce an annotated bibliography.
+
+The \verb+uclathes+ document class is compatible with other Bib\TeX\ style such as \verb+apsrev4-1+ and \verb+plain+. One can also use \verb+natbib+ package for compressing and sorting citations. If you are using \verb+natbib+ package, \verb+thebibliography+ environment in this class will be replaced. To have consistent format and spacing as this class, you will need to add
+\begin{eqnarray*}
+&&\verb+\renewcommand{\bibname}{References}+\\
+&&\verb+\renewcommand{\bibpreamble}{+\\
+&&\verb+    \addcontentsline{toc}{chapter}{References}+\\
+&&\verb+    \vskip 12pt+\\
+&&\verb+    \renewcommand\baselinestretch{1}+\\
+&&\verb+}+\\
+&&\verb+\renewcommand{\bibfont}{\normalsize}+
+\end{eqnarray*}
+to the preamble after you load the \verb+natbib+ package.
+
 \begin {figure}
 {\small
 \begin{verbatim}
@@ -365,7 +391,9 @@ surrounding text, with ``University of California" and
 ``Abstract of the Thesis/Dissertation" appearing in 
 FULL CAPITALS and \textbf{only} the title may be bolded
 if the committee allows for it. Author name cannot be
-in bold font.
+in bold font. As of April 2017, the \tdadvisor\ further restrict any use of 
+bold or large fonts in the title or abstract pages. However, small caps 
+font (\verb+\scshape+) is allowed after the abstract pages.
 \footnote {See the section
 ``If the Dissertation Advisor Gives You Trouble''
 before you go to file your manuscript.}
@@ -382,9 +410,7 @@ via a \verb+\title+ command, as follows:
 The title will be printed in normal (12-point) type,
 in a \LaTeX\ \verb+center+ environment.
 It is recommended that you specify explicit line breaks
-via \LaTeX\ \verb+\\+ commands. The title \textit{may}
-be bolded only if the committee allows, and this change
-must be added manually.
+via \LaTeX\ \verb+\\+ commands. As of April 2017, \tdadvisor requires the title to be the same size and font as surrounding text. However, if you really want  the title to be in a larger font size for your own copy, you can simply use \verb+\title{\Large+ $text$\verb+}+.
 
 Your own name should be specified
 via an \verb+\author+ command, as follows:
@@ -624,7 +650,18 @@ via a separate command of the following form:
 
 Each ``vita'' item is printed in two columns:
 a narrow column on the left for the {\sl date,}
-and a wider column on the right for the {\sl text}.
+and a wider column on the right for the {\sl text}. You can adjust these widths by adding
+
+\begin {center}
+\verb+\renewcommand {\vitadatewidth} {+$width1$\verb+}+ \\
+\verb+\renewcommand {\vitatextwidth} {+$width2$\verb+}+
+\end {center}
+in the preamble, where \textsl{width1} and \textsl{width2} are \verb+1in+ and \verb+5.25in+ by default if you don't change them. Note in order to have 1-inch margin on both sides, one needs $width1 + width2 =$ \verb+6.25in+ since the spacing between columns take \verb+0.25in+. The vertical separation between each ``vita'' item can be changed by
+
+\begin{center}
+\verb+\renewcommand {\vitastretch} {+$sep$\verb+}+
+\end{center}
+where the default $sep$ is 1.67.
 
 The ``vita'' items should be specified in chronological order,
 as they will be printed in the order given.
@@ -651,6 +688,23 @@ The \verb+uclathes+ document style macros
 will automatically generate the proper heading
 as appropriate.
 
+You can modify the heading of the Vita page by
+\begin{center}
+\verb+\renewcommand {\vitaname} {+$title$\verb+}+
+\end{center}
+
+
+You can also add any content to the Vita page by:
+
+\begin {center}
+\verb+\customCV {+$text$\verb+}+
+\end {center}
+The $text$ will appears after the default ``vita'', ``publication'', and ``presentation'' items. You also can completely customize the vita page by this \verb+\customCV+ command while not entering any \verb+\vitaitem+, \verb+\publication+, and \verb+\presentation+ items. If you are doing this, you need to add
+\begin{eqnarray*}
+& &\verb+\chapter*{Vita}+ \\
+& &\verb+\addcontentsline{toc}{chapter}{Vita}%+
+\end{eqnarray*}
+manually to the beginning of \verb+\customCV{}+ to get the Vita heading and the link from ``Table of Contents'' and PDF bookmarks to the vita page.
 
 \subsection {Abstract}
 
@@ -666,7 +720,39 @@ is taken from the corresponding data
 for the title and signature pages,
 and need not be specified a second time.
 
+\section {Customization}
 
+There are several titles and setting allow for customization in this class. To change a $setting$ to the $newvalue$, simply add
+\begin{center}
+\verb+\renewcommand{\+$setting$\verb+}{+$newvalue$\verb+}+
+\end{center}
+to the preamble before the setting is used. The following is the list of \verb+\+$ setting$ that you can change:
+
+\begin{description}
+
+	\item [$\backslash${\tt acksname}] --- The title of the acknowledgment or preface page. The default $value$ is ``Acknowledgments''.
+	
+	\item [$\backslash${\tt contentsname}] --- The title of the table of contents. The default $value$ is ``Table of Contents''.
+	
+	\item [$\backslash${\tt listfigurename}] --- The title of the list of figures. The default $value$ is ``List of Figures''.
+	
+	\item [$\backslash${\tt listtablename}] --- The title of the list of tables. The default $value$ is ``List of Tables''.
+
+	\item [$\backslash${\tt vitaname}] --- The title of the vita pages. The default $value$ is ``Vita''.
+	
+	\item [$\backslash${\tt vitadatewidth}] --- The width of the date column in the vita table. The default $value$ is ``1in''.	
+
+	\item [$\backslash${\tt vitadatewidth}] --- The width of the text column in the vita table. The default $value$ is ``5.25in''.	
+	
+	\item [$\backslash${\tt vitastretch}] --- The vertical separation between each item in the vita table. The default $value$ is 1.67.	
+	
+	\item [$\backslash${\tt refname}] --- The title of the bibliography. The default $value$ is ``References''. Note if you are using \verb+natbib+ package, this is instead controlled by \verb+\bibname+.
+	
+	\item [$\backslash${\tt figurename}] --- Caption name of each figure. The default $value$ is ``Figure''.
+	
+	\item [$\backslash${\tt tablename}] --- Caption name of each table. The default $value$ is ``Table''.
+	
+\end{description}
 
 \section {Things to Avoid}
 
