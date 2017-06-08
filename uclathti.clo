@@ -426,9 +426,9 @@
 	    \fi
 	    }\par
 	 }
+     \nobreak \vspace{12pt}% Use \vspace to make sure no page break here
      {% Make sure the \parskip only affect this part
-	 \nobreak \vspace{12pt}% Use \vspace to make sure no page break here
-     \ifx\@spacing\@doublespacing\parskip 24pt plus 4pt
+	 \ifx\@spacing\@doublespacing\parskip 24pt plus 4pt
 	 \else                       \parskip 12pt plus 2pt
 	 \fi
 	     \ifnum\c@publications>0  \@printpubitem{\@pubA} \fi
@@ -457,7 +457,7 @@
          \ifnum\c@publications>23 \@printpubitem{\@pubX} \fi
          \ifnum\c@publications>24 \@printpubitem{\@pubY} \fi
          \ifnum\c@publications>25 \@printpubitem{\@pubZ} \fi
-   }% End the \parskip change
+     }% End the \parskip change
    \fi
    \ifdefined\@customCV
       \@customCV
