@@ -65,9 +65,11 @@
       \begin {center}
          \header{University of California} \\
          \normalsize Los Angeles \\
-         \vfill
-         \@titlesize \@title \\
-         \vskip 48pt plus0pt minus18pt
+         \parbox[c][270pt][c]{\textwidth}{
+             \begin{center}
+             \@titlesize \@title
+                 \end{center}
+         }
          \normalsize A \@thesisname\
 	 submitted in partial satisfaction \\
          of the requirements for the degree \\
@@ -76,7 +78,7 @@
          by \\
          \vskip 24pt plus0pt minus6pt
          {\@author} \\
-         \vfill
+         \vskip78pt
          {\normalsize \@degreeyear}
       \end {center}
       \ColumnRestore
@@ -458,11 +460,11 @@
       \begin{center}
          % 2016 Title and author can no longer be in bold, or 
          % be larger than surrounding text.
-         \header{Abstract of the \MakeUppercase{\@Thesisname}}\\[12pt]
+         \header{Abstract of the \MakeUppercase{\@Thesisname}}\\[30pt]
          % 2016 Author name can no longer be in bold, or be larger
          % than surrounding text.
-         {\@titlesize \@title}\\[12pt]
-         \normalsize \normalfont by\\[12pt]
+         {\@titlesize \@title}\\[24pt]
+         \normalsize \normalfont by\\[24pt]
          {\@author} \\
          \normalsize \normalfont
 	 \@degreename\if@department\ in \@department \fi\\
@@ -479,7 +481,7 @@
          \else\typeout{No committee chair.}
          \fi\fi\fi
       \end{center}
-      \ifx\@spacing\@doublespacing\vskip 12pt\else\vskip 24pt\fi
+      \ifx\@spacing\@doublespacing\vskip 24pt\else\vskip 24pt\fi
       \renewcommand\baselinestretch{#1}\@normalsize
       %
       % Set up spacing.
