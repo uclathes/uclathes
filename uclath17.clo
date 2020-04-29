@@ -109,7 +109,7 @@
 
 % VERTICAL SPACING:        
                           % Top of page:
-%\topmargin 0.15in         %    Nominal distance from top of page to top
+\topmargin 0.15in         %    Nominal distance from top of page to top
                           %    of box containing running head.
 \headheight 0pt           %    Height of box containing running head.
 \headsep 0pt              %    Space between running head and text.
@@ -117,14 +117,14 @@
                           % Bottom of page:
 % johnh: footheight unused
 % \footheight 12pt          %    Height of box containing running foot.
-\footskip 0.25in            %    Distance from baseline of box containing
+\footskip 0.40in            %    Distance from baseline of box containing
                             %    foot to baseline of last line of text.
 % johnh: footskip -> 0.8in from 0.6in to meet RFTADP guidelines
 % (probably with LaTeX209 footheight was added to footskip).
 
 % DIMENSION OF TEXT:
 
-\textheight 9in       % Height of text (including footnotes and fig-
+\textheight 8.45in       % Height of text (including footnotes and fig-
                          % ures, excluding running head and foot).
 \textwidth 6.5in         % Width of text line.
 
